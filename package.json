@@ -1,0 +1,23 @@
+{
+  "name": "P9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BeatrizMV/conquistar_celdas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BeatrizMV/conquistar_celdas/issues"
+  },
+  "homepage": "https://github.com/BeatrizMV/conquistar_celdas#readme",
+  "dependencies": {
+    "connect-flash": "^0.1.1"
+  }
+}

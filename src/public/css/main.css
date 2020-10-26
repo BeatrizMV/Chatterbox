@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Varela);
+@import url('https://fonts.googleapis.com/css?family=Varela');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .login {}
 
 html {
@@ -11,8 +12,8 @@ html {
 
 #logintitle {
     color: rgba(255, 255, 255, 0.822);
-    font-size: 25px;
-    font-family: 'Varela', sans-serif;
+    font-size: 30px;
+    font-family: 'Pacifico';
 }
 
 body {
@@ -44,6 +45,21 @@ a:hover {
 .checkbox-inline+.checkbox-inline,
 .radio-inline+.radio-inline {
     margin-top: 6px;
+}
+
+
+/* #chatwrap {
+    background-color: #fff;
+    border-color: #000;
+    border-style: double;
+    margin-top: 25%;
+} */
+
+.card {
+    width: 100%;
+    margin-top: 10%;
+    margin-left: 20%;
+    background-color: #fff;
 }
 
 
@@ -226,4 +242,9 @@ input[type="checkbox"]:checked+label::before,
 
 #logintitle {
     color: #ddd, !important;
+}
+
+.usersclass {
+    margin-left: 8%;
+    margin-top: 2%;
 }

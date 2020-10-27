@@ -248,3 +248,10 @@ input[type="checkbox"]:checked+label::before,
     margin-left: 8%;
     margin-top: 2%;
 }
+
+#btnsalas {
+    color: #fff;
+    font-family: 'Varela', sans-serif;
+    border-radius: 10px;
+    border-color: #fff;
+}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css">
     <!-- CSS -->
@@ -18,50 +18,44 @@
 </head>
 
 <body id="body" class="login chatroom">
-
-    <!-- NAVBAR -->
-    <nav class="">
-        <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
+    <div class="container-fluid">
+        <!-- NAVBAR -->
+        <nav class="">
+            <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
       CHATTERBOX
     </a>
 
-        <div id="chatwrap">
-            <div class="row">
-                <!-- ROOM SECTION-->
-                <div class="col-md-5">
-                    <div class="card">
-                        <!-- CARD HEADER-->
-                        <div class="card-header bg-dark text-white">
-                            <h2 id="room-name"> Rooms</h2>
+            <div id="chatwrap">
+                <div class="row">
+                    <!-- ROOM SECTION-->
+                    <div class="col-md-8">
+                        <div class="card">
+                            <!-- CARD HEADER-->
+                            <div class="flexheader card-header bg-dark text-white">
+                                <h2 id="room-name"> Rooms</h2>
+                                <div id="creabuscawrap" class="btnwrap container-fluid">
+                                    <div class="crear-sala">
+                                        <a id="crea-sala" href="#" type="button" class="btn btn-success">Crear Sala</a>
+                                    </div>
 
-                        </div>
-                        <!-- CARD BODY-->
-                        <div id="chat" class="card-body"></div>
-                        <!-- CARD FOOTER -->
+                                    <div class="md-form mt-0 buscar">
+                                        <input id="buscasala" class="form-control" type="text" placeholder="Buscar Sala" aria-label="Search">
+                                        <hr>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- CARD BODY-->
+                            <div id="chat" class="card-body"></div>
+                            <!-- CARD FOOTER -->
+                        </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            $(document).ready(function() {
+    </div>
+    </div>
 
-                $('ul.switcher li').click(function() {
-                    var tab_id = $(this).attr('data-tab');
-
-                    $('li').removeClass('active');
-
-                    $('div.tab-pane').removeClass('active');
-
-                    $(this).addClass('active');
-                    $("#" + tab_id).addClass('active');
-                })
-
-            })
-        </script>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </body>
 
 

@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Varela');
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@media (max-width: 650px) {
+    h3,
+    h2,
+    p {
+        font-size: 20px;
+    }
+}
+
 .login {}
 
 html {
@@ -47,6 +55,7 @@ a:hover {
     margin-top: 6px;
 }
 
+
 /* #chatwrap {
     background-color: #fff;
     border-color: #000;
@@ -60,6 +69,7 @@ a:hover {
     margin-left: 20%;
     background-color: #fff;
 }
+
 
 /* body.login {
     background: rgba(255, 255, 255, 1);
@@ -253,8 +263,11 @@ input[type="checkbox"]:checked+label::before,
     border-radius: 10px;
     border-color: #fff;
 }
+
+
 /* zona para elegir el avatar */
-.drop-zone{
+
+.drop-zone {
     max-width: 100px;
     height: 100px;
     padding: 2px;
@@ -270,9 +283,39 @@ input[type="checkbox"]:checked+label::before,
     border: 4px dashed #00957B;
     border-radius: 10px;
 }
-.drop-zone--over{
-    border-style: solid ;
+
+.drop-zone--over {
+    border-style: solid;
 }
-.drop-zone__imput{
+
+.drop-zone__imput {
     display: none;
+}
+
+#userbox {
+    width: 60%;
+}
+
+#roombox {
+    padding-left: -50px;
+}
+
+.flexheader {
+    display: flex;
+    align-content: space-between;
+}
+
+#creabuscawrap {
+    display: flex;
+    flex-direction: row-reverse;
+    align-content: space-between;
+}
+
+#buscasala {
+    margin-top: 20px;
+}
+
+#crea-sala {
+    padding-left: 20px;
+    padding-right: 20px;
 }

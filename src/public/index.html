@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css">
     <!-- CSS -->
@@ -19,80 +20,100 @@
 
 
 <body id="body" class="login chatroom">
+    <div class="container-fluid">
 
-    <!-- NAVBAR -->
-    <nav class="">
-        <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
+        <!-- NAVBAR -->
+        <nav class="">
+            <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
       CHATTERBOX
     </a>
-        <body id="body" class="login chatroom">
-      <!-- <div class="container"> -->
-        <!-- SIGN IN & SIGN UP -->
-        <div class="login-container-wrapper clearfix">
-                <h3 class="text-whitesmoke login-container-wrapper">
-                    <p id="logintitle" class="btn btn-lg btn-block" href="/">
-                        ChatterBox
-                    </p>
-                </h3>
-                <ul class="switcher clearfix">
 
-                    <li class="first logo active" data-tab="login">
-                        <a><b>Login</b></a>
-                    </li>
-                    <li class="second logo" data-tab="sign_up">
-                        <a><b>Sign Up</b></a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="login">
-                        <form class="form-horizontal login-form">
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
-                            </div>
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
-                            </div>
+            <body id="body" class="login chatroom">
+                <!-- <div class="container"> -->
+                <!-- SIGN IN & SIGN UP -->
+                <div class="login-container-wrapper clearfix">
+                    <h3 class="text-whitesmoke login-container-wrapper">
+                        <p id="logintitle" class="btn btn-lg btn-block" href="/">
+                            ChatterBox
+                        </p>
+                    </h3>
+                    <ul class="switcher clearfix">
 
-                            <hr />
+                        <li class="first logo active" data-tab="login">
+                            <a><b>Login</b></a>
+                        </li>
+                        <li class="second logo" data-tab="sign_up">
+                            <a><b>Sign Up</b></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="login">
+                            <form class="form-horizontal login-form">
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fa fa-user"></i>
+                                </div>
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success btn-lg btn-block" type="submit">Login</button>
+                                </div>
 
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="sign_up">
-                        <form class="form-horizontal login-form">
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_username" placeholder="Name" required="" type="text"> <i class="fa fa-user"></i>
-                            </div>
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
-                            </div>
-                            <div class="form-group relative">
-                                <input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>
-                            </div>
-                            <div class="form-group relative">
-                                <h5><b>Choose your own avatar</b></h5>
-                            </div>
-                            <div class="drop-zone">
-                                <spam class="drop=zone--promot">Drop file here or click to upload</spam>
-                                <imput type="file" name="myFile" class="drop-zone--imput">
-                            </div>
-                            <div class="form-group">
-                                <button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
-                            </div>
-                            <hr>
+                                <hr />
 
-                        </form>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="sign_up">
+                            <form class="form-horizontal login-form">
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_username" placeholder="E-mail Address" required="" type="email"> <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_username" placeholder="Name" required="" type="text"> <i class="fa fa-user"></i>
+                                </div>
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_password" placeholder="Password" required="" type="password"> <i class="fa fa-lock"></i>
+                                </div>
+                                <div class="form-group relative">
+                                    <input class="form-control input-lg" id="login_password" placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>
+                                </div>
+                                <div class="form-group relative">
+                                    <h5><b>Choose your own avatar</b></h5>
+                                </div>
+                                <div class="drop-zone">
+                                    <spam class="drop=zone--promot">Drop file here or click to upload</spam>
+                                    <imput type="file" name="myFile" class="drop-zone--imput">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success btn-lg btn-block" type="submit">Sign Up</button>
+                                </div>
+                                <hr>
+
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-</body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    </div>
+    <script>
+        $(document).ready(function() {
+
+            $('ul.switcher li').click(function() {
+                var tab_id = $(this).attr('data-tab');
+
+                $('li').removeClass('active');
+
+                $('div.tab-pane').removeClass('active');
+
+                $(this).addClass('active');
+                $("#" + tab_id).addClass('active');
+            })
+
+        })
+    </script>
+
+    </body>
 
 
 </html>

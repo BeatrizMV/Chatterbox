@@ -47,7 +47,6 @@ a:hover {
     margin-top: 6px;
 }
 
-
 /* #chatwrap {
     background-color: #fff;
     border-color: #000;
@@ -61,7 +60,6 @@ a:hover {
     margin-left: 20%;
     background-color: #fff;
 }
-
 
 /* body.login {
     background: rgba(255, 255, 255, 1);
@@ -254,4 +252,27 @@ input[type="checkbox"]:checked+label::before,
     font-family: 'Varela', sans-serif;
     border-radius: 10px;
     border-color: #fff;
+}
+/* zona para elegir el avatar */
+.drop-zone{
+    max-width: 100px;
+    height: 100px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Varela', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    color: #fff;
+    border: 4px dashed #00957B;
+    border-radius: 10px;
+}
+.drop-zone--over{
+    border-style: solid ;
+}
+.drop-zone__imput{
+    display: none;
 }

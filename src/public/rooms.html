@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/main.css">
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- FONT AWESOME -->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+    <title>ChatterBox</title>
+</head>
+
+<body id="body" class="login chatroom">
+
+    <!-- NAVBAR -->
+    <nav class="">
+        <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
+      CHATTERBOX
+    </a>
+
+        <div id="chatwrap">
+            <div class="row">
+                <!-- ROOM SECTION-->
+                <div class="col-md-5">
+                    <div class="card">
+                        <!-- CARD HEADER-->
+                        <div class="card-header bg-dark text-white">
+                            <h2 id="room-name"> Rooms</h2>
+
+                        </div>
+                        <!-- CARD BODY-->
+                        <div id="chat" class="card-body"></div>
+                        <!-- CARD FOOTER -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function() {
+
+                $('ul.switcher li').click(function() {
+                    var tab_id = $(this).attr('data-tab');
+
+                    $('li').removeClass('active');
+
+                    $('div.tab-pane').removeClass('active');
+
+                    $(this).addClass('active');
+                    $("#" + tab_id).addClass('active');
+                })
+
+            })
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+</body>
+
+
+</html>

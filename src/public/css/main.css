@@ -253,3 +253,26 @@ input[type="checkbox"]:checked+label::before,
     border-radius: 10px;
     border-color: #fff;
 }
+/* zona para elegir el avatar */
+.drop-zone{
+    max-width: 100px;
+    height: 100px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Varela', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    color: #fff;
+    border: 4px dashed #00957B;
+    border-radius: 10px;
+}
+.drop-zone--over{
+    border-style: solid ;
+}
+.drop-zone__imput{
+    display: none;
+}

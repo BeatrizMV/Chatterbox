@@ -1,4 +1,4 @@
-// NOMBRE & EMAIL
+// INDEX
 
 const form = document.querySelector('.tab-content');
 
@@ -32,5 +32,15 @@ submitSignInBtn.addEventListener('click', function() {
 
 submitSignInBtn.addEventListener('click', function() {
     localStorage.setItem('email', getSignInEmail.value);
+
+});
+
+// SALA
+
+const getRoom = document.querySelector('#buscasala');
+const submitSearchRoom = document.querySelector('#localstorageSalas');
+
+submitSearchRoom.addEventListener('click', function() {
+    localStorage.setItem('name', getRoom.value);
 
 });

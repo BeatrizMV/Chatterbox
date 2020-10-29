@@ -35,27 +35,30 @@
                                 <h2 id="room-name"> Rooms</h2>
                                 <div id="creabuscawrap" class="btnwrap container-fluid">
                                     <div class="crear-sala">
-                                        <a id="crea-sala" href="#" type="button" class="btn btn-success">Crear Sala</a>
-                                    </div>
-
-                                    <div class="md-form mt-0 buscar">
-                                        <input id="buscasala" class="form-control" type="text" placeholder="Buscar Sala" aria-label="Search">
-                                        <hr>
+                                        <div class="md-form mt-0 buscar">
+                                            <form class="form-inline">
+                                                <input id="buscasala" class="form-control" type="search" placeholder="Nombre de la sala..." aria-label="Search">
+                                                <button id="localstorageSalas" class="btn btn-success" type="submit">Search</button>
+                                                <a id="crea-sala" href="#" type="button" class="btn btn-success">Crear Sala</a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- CARD BODY-->
-                            <div id="chat" class="card-body"></div>
-                            <!-- CARD FOOTER -->
                         </div>
-                        </form>
+                        <!-- CARD BODY-->
+                        <div id="chat" class="card-body"></div>
+                        <!-- CARD FOOTER -->
                     </div>
+                    </form>
                 </div>
             </div>
     </div>
     </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="./js/webstorage.js"></script>
 </body>
 
 

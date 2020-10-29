@@ -1,37 +1,36 @@
 // NOMBRE & EMAIL
 
-$(document).on("ready", function() {
-    if (window.localStorage != null) {
-        //Recuperar claves
-        obtener_claves_local();
-        local();
-    }
+const form = document.querySelector('.tab-content');
 
+const getLoginName = document.querySelector('#login_username');
+const getLoginEmail = document.querySelector('#login_email');
 
-    function obtener_claves_local() {
-        if (window.localStorage != "undefined") {
-            //Recuperar claves y escribirlas en los input correspondientes
-            var usuario = localStorage.getItem("usuario");
-            $('#login_username').val(usuario);
-            var email = localStorage["email"];
-            $('#login_email').val(email);
-        }
-    }
+const getSignInName = document.querySelector('#login_username');
+const getSignInEmail = document.querySelector('#login_email');
 
-    function guardar_claves_local() {
-        if (window.localStorage != "undefined") {
-            //Guardar claves con los valores de los inputs
-            var usuario = $('#login_username').val();
-            localStorage.setItem("usuario", usuario);
-            var email = $('#login_email').val();
-            localStorage.setItem("email", email);
-        }
-    }
+const submitLoginBtn = document.querySelector('#guardar_claves_login');
+const submitSignInBtn = document.querySelector('#guardar_claves_signin');
 
-    function local() {
-        $('#guardar_claves_local').on("click", function() {
-            guardar_claves_local();
-        });
-    }
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+});
+
+submitLoginBtn.addEventListener('click', function() {
+    localStorage.setItem('name', getLoginName.value);
+
+});
+
+submitLoginBtn.addEventListener('click', function() {
+    localStorage.setItem('email', getLoginEmail.value);
+
+});
+
+submitSignInBtn.addEventListener('click', function() {
+    localStorage.setItem('name', getSignInName.value);
+
+});
+
+submitSignInBtn.addEventListener('click', function() {
+    localStorage.setItem('email', getSignInEmail.value);
 
 });

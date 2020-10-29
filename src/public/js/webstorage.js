@@ -23,7 +23,7 @@ $(document).on("ready", function() {
             //Guardar claves con los valores de los inputs
             var usuario = $('#login_username').val();
             localStorage.setItem("usuario", usuario);
-            var email = $('##login_email').val();
+            var email = $('#login_email').val();
             localStorage.setItem("email", email);
         }
     }

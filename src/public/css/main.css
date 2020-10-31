@@ -263,35 +263,6 @@ input[type="checkbox"]:checked+label::before,
     border-radius: 10px;
     border-color: #fff;
 }
-
-
-/* zona para elegir el avatar */
-
-.drop-zone {
-    max-width: 100px;
-    height: 100px;
-    padding: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'Varela', sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    cursor: pointer;
-    color: #fff;
-    border: 4px dashed #00957B;
-    border-radius: 10px;
-}
-
-.drop-zone--over {
-    border-style: solid;
-}
-
-.drop-zone--input {
-    display: none;
-}
-
 #userbox {
     width: 60%;
 }
@@ -320,3 +291,53 @@ input[type="checkbox"]:checked+label::before,
     padding-left: 20px;
     padding-right: 20px;
 }
+
+/* zona para elegir el avatar */
+
+.drop-zone {
+    max-width: 100px;
+    height: 100px;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Varela', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    color: #fff;
+    border: 4px dashed #00957B;
+    border-radius: 10px;
+}
+
+.drop-zone__over {
+    border-style: solid;
+    border-color: white;
+}
+
+.drop-zone__input {
+    display: none;
+}
+.drop-zone__thumb{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #00957B;
+    background-size: cover;
+    position: relative;
+}
+.drop-zone__thumb::after{
+    content: attr(data-label);
+    position: absolute;
+    botton: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+    color: #ffffff;
+    background: rgba(0,0,0,0.75);
+    font-size: 5px;
+    text-align: center;
+}
+

@@ -288,7 +288,7 @@ input[type="checkbox"]:checked+label::before,
     border-style: solid;
 }
 
-.drop-zone__imput {
+.drop-zone--input {
     display: none;
 }
 
@@ -315,7 +315,8 @@ input[type="checkbox"]:checked+label::before,
     margin-top: 20px;
 }
 
-#crea-sala {
+#crea-sala,
+#localstorageSalas {
     padding-left: 20px;
     padding-right: 20px;
 }

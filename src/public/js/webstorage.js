@@ -5,8 +5,8 @@ const form = document.querySelector('.tab-content');
 const getLoginName = document.querySelector('#login_username');
 const getLoginEmail = document.querySelector('#login_email');
 
-const getSignInName = document.querySelector('#login_username');
-const getSignInEmail = document.querySelector('#login_email');
+const getSignInName = document.querySelector('#signin_username');
+const getSignInEmail = document.querySelector('#signin_email');
 
 const submitLoginBtn = document.querySelector('#guardar_claves_login');
 const submitSignInBtn = document.querySelector('#guardar_claves_signin');
@@ -31,6 +31,7 @@ submitSignInBtn.addEventListener('click', function() {
 });
 
 submitSignInBtn.addEventListener('click', function() {
+    console.log("clicked on sign in")
     localStorage.setItem('email', getSignInEmail.value);
 
 });
@@ -40,7 +41,9 @@ submitSignInBtn.addEventListener('click', function() {
 const getRoom = document.querySelector('#buscasala');
 const submitSearchRoom = document.querySelector('#localstorageSalas');
 
-submitSearchRoom.addEventListener('click', function() {
-    localStorage.setItem('name', getRoom.value);
+if(submitSearchRoom) {
+    submitSearchRoom.addEventListener('click', function() {
+        localStorage.setItem('name', getRoom.value);
 
-});
+    });
+}

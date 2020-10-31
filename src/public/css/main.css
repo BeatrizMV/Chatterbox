@@ -295,8 +295,8 @@ input[type="checkbox"]:checked+label::before,
 /* zona para elegir el avatar */
 
 .drop-zone {
-    max-width: 100px;
-    height: 100px;
+    max-width: 200px;
+    height: 200px;
     padding: 2px;
     display: flex;
     align-items: center;
@@ -337,7 +337,7 @@ input[type="checkbox"]:checked+label::before,
     padding: 5px 0;
     color: #ffffff;
     background: rgba(0,0,0,0.75);
-    font-size: 5px;
+    font-size: 11px;
     text-align: center;
 }
 

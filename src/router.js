@@ -2,7 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 
-const loginController = require("./controllers/login");
+const loginController = require("./controllers/user");
+const roomsController = require("./controllers/room");
 const config = require("./config");
 
 const clientPath = path.join(__dirname, "./public");
@@ -43,6 +44,13 @@ module.exports = function router(req, res) {
     if (req.method === "GET") loginController.checkLogin(req, res);
   } else if (path === "/register") {
     if (req.method === "POST") loginController.register(req, res);
+  } else if (path === "/rooms") {
+    if (req.method === "GET") roomsController.getRooms(req, res);
+  } else if (path === "/room") {
+    if (req.method === "GET") roomsController.getRoom(req, res);
+    if (req.method === "POST") roomsController.createRoom(req, res);
+  } else if (path === "/addUserToRoom") {
+    if (req.method === "POST") roomsController.addUserToRoom(req, res);
   } else if (req.url.includes(".")) {
     serveStatic(req, res);
   } else {

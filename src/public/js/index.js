@@ -31,7 +31,7 @@ const login = async () => {
   const email = document.getElementById("login_email").value;
   const password = document.getElementById("login_password").value;
 
-  const url = new URL(`http://localhost:3000/login`);
+  const url = new URL(`${baseURL}login`);
   const params = { email, password };
 
   Object.keys(params).forEach((key) =>
@@ -49,8 +49,8 @@ const login = async () => {
 
 const register = async () => {
   const email = document.getElementById("signin_email").value;
+  const name = document.getElementById("signin_username").value;
   const password = document.getElementById("signin_password").value;
-  // Photo is not saved for now
 
   const url = new URL(`${baseURL}register`);
 
@@ -67,13 +67,8 @@ const register = async () => {
     }),
   });
 
-  // Check if result is ok
-  // If result is ok // Redirect to the chat rooms? Redirect to the login page?
-  // And save the data in Localstorage
-  // If result is not ok?
-
   if (result.status === 200) {
-    webStorage.saveUser(null, email);
+    webStorage.registerUser(name, email);
     window.location.replace(`${baseURL}rooms.html`);
   } else {
     alert("El usuario ya existe");

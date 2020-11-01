@@ -1,10 +1,5 @@
 const form = document.querySelector(".tab-content");
 
-const getSignInName = document.querySelector("#signin_username");
-const getSignInEmail = document.querySelector("#signin_email");
-
-const submitSignInBtn = document.querySelector("#guardar_claves_signin");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 });
@@ -14,7 +9,10 @@ const saveUser = (name, email) => {
   localStorage.setItem("email", email);
 };
 
-submitSignInBtn.addEventListener("click", function () {
+const registerUser = (name, email) => {
+  const getSignInName = document.querySelector("#signin_username");
+  const getSignInEmail = document.querySelector("#signin_email");
+
   saveUser(getSignInName.value, getSignInEmail.value);
   // AVATAR
   const inputAvatar = document.querySelector("#avatar");
@@ -35,7 +33,7 @@ submitSignInBtn.addEventListener("click", function () {
     };
     reader.readAsDataURL(file);
   }
-});
+};
 
 // SALA
 const getRoom = document.querySelector("#buscasala");
@@ -47,4 +45,4 @@ if (submitSearchRoom) {
   });
 }
 
-export default { saveUser };
+export default { saveUser, registerUser };

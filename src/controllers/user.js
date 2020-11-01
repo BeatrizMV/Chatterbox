@@ -1,23 +1,24 @@
-const users = require("../models/index").users;
+const { users } = require("../models/index");
 const config = require("../config");
+const userHelper = require("../helpers/user");
 
 const checkLogin = (req, res) => {
   const reqURL = new URL(`http://${config.hostname}${req.url}`);
   const email = reqURL.searchParams.get("email");
-  if (users.includes(email)) {
+  if (userHelper.checkIfUserExists(email)) {
     res.statusCode = 200;
-    res.end("Ok");
+    res.end("User logged correctly");
   } else {
     res.statusCode = 404;
-    res.end("Not ok");
+    res.end("The user or the password are not correct");
   }
 };
 
 const register = (req, res) => {
   const { email } = req.body;
-  const isAdded = !users.includes(email) && users.push(email);
+  const isAdded = !userHelper.checkIfUserExists(email) && users.push(email);
   if (isAdded) {
-    res.statusCode = 200;
+    res.statusCode = 201;
     res.end("User added");
   } else {
     res.statusCode = 404;

@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const url = require("url");
 
 const loginController = require("./controllers/login");
+const config = require("./config");
 
 const clientPath = path.join(__dirname, "./public");
 
@@ -33,9 +35,13 @@ function serveStatic(req, res) {
 module.exports = function router(req, res) {
   if (req.url === "/") req.url = "/index.html";
 
-  if (req.url === "login") {
+  const reqURL = new url.URL(`http://${config.hostname}${req.url}`);
+
+  const path = reqURL.pathname;
+
+  if (path === "/login") {
     if (req.method === "GET") loginController.checkLogin(req, res);
-  } else if (req.url === "register") {
+  } else if (path === "/register") {
     if (req.method === "POST") loginController.register(req, res);
   } else if (req.url.includes(".")) {
     serveStatic(req, res);

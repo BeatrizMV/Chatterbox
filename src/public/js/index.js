@@ -1,4 +1,4 @@
-import webStorage from "./webstorage";
+import webStorage from "./webstorage.js";
 
 $(document).ready(function () {
   $("ul.switcher li").click(function () {
@@ -25,13 +25,13 @@ $(document).ready(function () {
     });
 });
 
-const baseURL = "hhtp://localhost:3000/";
+const baseURL = "http://localhost:3000/";
 
 const login = async () => {
   const email = document.getElementById("login_email").value;
   const password = document.getElementById("login_password").value;
 
-  const url = new URL(`${baseURL}login`);
+  const url = new URL(`http://localhost:3000/login`);
   const params = { email, password };
 
   Object.keys(params).forEach((key) =>
@@ -39,12 +39,12 @@ const login = async () => {
   );
 
   const result = await fetch(url);
-  console.log(result);
-
-  // Check if result is ok
-  // if(result) call localStorage
-  // Show an error
-  webStorage.saveUser(name, email);
+  if (result.status === 200) {
+    webStorage.saveUser(null, email);
+    window.location.replace(`${baseURL}rooms.html`);
+  } else {
+    alert("Usuario o email incorrecto");
+  }
 };
 
 const register = async () => {
@@ -63,13 +63,19 @@ const register = async () => {
     body: JSON.stringify({
       email,
       password,
+      name,
     }),
   });
-  console.log(result);
 
   // Check if result is ok
   // If result is ok // Redirect to the chat rooms? Redirect to the login page?
   // And save the data in Localstorage
   // If result is not ok?
-  webStorage.saveUser(name, email);
+
+  if (result.status === 200) {
+    webStorage.saveUser(null, email);
+    window.location.replace(`${baseURL}rooms.html`);
+  } else {
+    alert("El usuario ya existe");
+  }
 };

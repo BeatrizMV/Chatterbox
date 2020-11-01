@@ -18,17 +18,23 @@ submitSignInBtn.addEventListener("click", function () {
   saveUser(getSignInName.value, getSignInEmail.value);
   // AVATAR
   const inputAvatar = document.querySelector("#avatar");
-  const file = inputAvatar.files[0];
-  console.log(file);
 
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    // convert file to base64 String
-    const base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-    // store file
-    localStorage.setItem("avatar", base64String);
-  };
-  reader.readAsDataURL(file);
+  let file;
+  if (inputAvatar) {
+    file = inputAvatar.files[0];
+    console.log(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      // convert file to base64 String
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      // store file
+      localStorage.setItem("avatar", base64String);
+    };
+    reader.readAsDataURL(file);
+  }
 });
 
 // SALA

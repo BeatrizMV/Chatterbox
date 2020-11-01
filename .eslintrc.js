@@ -3,6 +3,8 @@ module.exports = {
     commonjs: true,
     es2021: true,
     node: true,
+    browser: true,
+    jquery: true,
   },
   extends: ["standard", "prettier"],
   parserOptions: {

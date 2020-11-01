@@ -1,8 +1,9 @@
 const form = document.querySelector(".tab-content");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-});
+form &&
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+  });
 
 const saveUser = (name, email) => {
   localStorage.setItem("name", name);

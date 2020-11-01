@@ -39,6 +39,7 @@ const login = async () => {
   );
 
   const result = await fetch(url);
+
   if (result.status === 200) {
     webStorage.saveUser(null, email);
     window.location.replace(`${baseURL}rooms.html`);

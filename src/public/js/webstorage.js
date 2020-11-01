@@ -36,14 +36,8 @@ const registerUser = (name, email) => {
   }
 };
 
-// SALA
-const getRoom = document.querySelector("#buscasala");
-const submitSearchRoom = document.querySelector("#localstorageSalas");
+const saveRoom = (name) => {
+  localStorage.setItem("roomName", name);
+};
 
-if (submitSearchRoom) {
-  submitSearchRoom.addEventListener("click", function () {
-    localStorage.setItem("name", getRoom.value);
-  });
-}
-
-export default { saveUser, registerUser };
+export default { saveUser, registerUser, saveRoom };

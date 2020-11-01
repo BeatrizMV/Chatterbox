@@ -1,3 +1,5 @@
+import webStorage from "./webstorage.js";
+
 $(document).ready(function () {
   getRooms();
   document.getElementById("crea-sala").addEventListener("click", function () {
@@ -16,6 +18,7 @@ const getRooms = async () => {
 
     rooms.forEach((room) => {
       appendRoom(room);
+      webStorage.saveRoom(room.name);
     });
   }
 };
@@ -39,6 +42,7 @@ const newRoom = async () => {
 
     if (result.status === 201) {
       const room = await result.json();
+      webStorage.saveRoom(name);
       appendRoom(room);
     }
   } else {

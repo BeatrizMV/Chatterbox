@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const clientPath = path.join(__dirname, "/../../../client");
+const clientPath = path.join(__dirname, "./public");
 
 const mimeTypes = {
   ".html": "text/html",
@@ -30,8 +30,7 @@ function serveStatic(req, res) {
 
 module.exports = function router(req, res) {
   if (req.url === "/") req.url = "/index.html";
-  if (req.url === "/x") {
-  } else if (req.url.includes(".")) {
+  if (req.url.includes(".")) {
     serveStatic(req, res);
   } else {
     notFound(res);

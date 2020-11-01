@@ -21,7 +21,6 @@ const registerUser = (name, email) => {
   let file;
   if (inputAvatar) {
     file = inputAvatar.files[0];
-    console.log(file);
 
     const reader = new FileReader();
     reader.onloadend = () => {

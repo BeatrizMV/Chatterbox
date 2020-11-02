@@ -1,127 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!-- BOOTSTRAP -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"
+    />
     <!-- CSS -->
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/main.css" />
     <!-- JQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- FONT AWESOME -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-            crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+      integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela&display=swap"
+      rel="stylesheet"
+    />
     <title>ChatterBox</title>
-</head>
+  </head>
 
-<body id="body" class="login chatroom">
-<div class="container-fluid">
-
-    <!-- NAVBAR -->
-    <nav class="">
-        <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
-            CHATTERBOX
+  <body id="body" class="login chatroom">
+    <div class="container-fluid">
+      <!-- NAVBAR -->
+      <nav class="">
+        <a class="" style="color: black; font-size: 25px" href="/"
+          ><i class="fa fa-home" aria-hidden="true"></i>
+          CHATTERBOX
         </a>
-    </nav>
-    <!-- <div class="container"> -->
-    <!-- SIGN IN & SIGN UP -->
-    <div class="login-container-wrapper clearfix">
+      </nav>
+      <!-- <div class="container"> -->
+      <!-- SIGN IN & SIGN UP -->
+      <div class="login-container-wrapper clearfix">
         <h3 class="text-whitesmoke login-container-wrapper">
-            <p id="logintitle" class="btn btn-lg btn-block" href="/">
-                ChatterBox
-            </p>
+          <p id="logintitle" class="btn btn-lg btn-block" href="/">
+            ChatterBox
+          </p>
         </h3>
         <ul class="switcher clearfix">
-
-            <li class="first logo active" data-tab="login">
-                <a><b>Login</b></a>
-            </li>
-            <li class="second logo" data-tab="sign_up">
-                <a><b>Sign Up</b></a>
-            </li>
+          <li class="first logo active" data-tab="login">
+            <a><b>Login</b></a>
+          </li>
+          <li class="second logo" data-tab="sign_up">
+            <a><b>Sign Up</b></a>
+          </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="login">
-                <form class="form-horizontal login-form">
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="login_email" placeholder="E-mail Address"
-                               required="" type="email"> <i class="fa fa-user"></i>
-                    </div>
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="login_password" placeholder="Password" required=""
-                               type="password"> <i class="fa fa-lock"></i>
-                    </div>
-                    <div class="form-group">
-                        <button id="guardar_claves_login" class="btn btn-success btn-lg btn-block" type="submit"
-                                value="Guardar claves localStorage">Login
-                        </button>
-                    </div>
+          <div class="tab-pane active" id="login">
+            <form class="form-horizontal login-form">
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="login_email"
+                  placeholder="E-mail Address"
+                  required=""
+                  type="email"
+                />
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="login_password"
+                  placeholder="Password"
+                  required=""
+                  type="password"
+                />
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="form-group">
+                <button
+                  id="guardar_claves_login"
+                  class="btn btn-success btn-lg btn-block"
+                  type="submit"
+                  value="Guardar claves localStorage"
+                >
+                  Login
+                </button>
+              </div>
 
-                    <hr/>
-
-                </form>
-            </div>
-            <div class="tab-pane" id="sign_up">
-                <form class="form-horizontal login-form">
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="signin_email" placeholder="E-mail Address"
-                               required="" type="email"> <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="signin_username" placeholder="Name" required=""
-                               type="text"> <i class="fa fa-user"></i>
-                    </div>
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="signin_password" placeholder="Password" required=""
-                               type="password"> <i class="fa fa-lock"></i>
-                    </div>
-                    <div class="form-group relative">
-                        <input class="form-control input-lg" id="second_signin_password"
-                               placeholder="Repeat Password" required="" type="password"> <i class="fa fa-lock"></i>
-                    </div>
-                    <div class="form-group relative">
-                        <h5><b>Choose your own avatar</b></h5>
-                    </div>
-                    <div class="drop-zone">
-                        <span class="drop-zone__prompt">Drop file here or click to upload</span>
-                        <input type="file" name="myFile" class="drop-zone__input">
-                    </div>
-                    <div class="form-group">
-                        <button id="guardar_claves_signin" class="btn btn-success btn-lg btn-block" type="submit"
-                                value="Guardar claves localStorage">Sign Up
-                        </button>
-                    </div>
-                    <hr>
-
-                </form>
-            </div>
+              <hr />
+            </form>
+          </div>
+          <div class="tab-pane" id="sign_up">
+            <form class="form-horizontal login-form">
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="signin_email"
+                  placeholder="E-mail Address"
+                  required=""
+                  type="email"
+                />
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="signin_username"
+                  placeholder="Name"
+                  required=""
+                  type="text"
+                />
+                <i class="fa fa-user"></i>
+              </div>
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="signin_password"
+                  placeholder="Password"
+                  required=""
+                  type="password"
+                />
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="form-group relative">
+                <input
+                  class="form-control input-lg"
+                  id="second_signin_password"
+                  placeholder="Repeat Password"
+                  required=""
+                  type="password"
+                />
+                <i class="fa fa-lock"></i>
+              </div>
+              <div class="form-group relative">
+                <h5><b>Choose your own avatar</b></h5>
+              </div>
+              <div class="drop-zone">
+                <span class="drop-zone__prompt"
+                  >Drop file here or click to upload</span
+                >
+                <input type="file" name="myFile" class="drop-zone__input" />
+              </div>
+              <div class="form-group">
+                <button
+                  id="guardar_claves_signin"
+                  class="btn btn-success btn-lg btn-block"
+                  type="submit"
+                  value="Guardar claves localStorage"
+                >
+                  Sign Up
+                </button>
+              </div>
+              <hr />
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.js"
-        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
-
-        $('ul.switcher li').click(function () {
-            var tab_id = $(this).attr('data-tab');
-
-            $('li').removeClass('active');
-
-            $('div.tab-pane').removeClass('active');
-
-            $(this).addClass('active');
-            $("#" + tab_id).addClass('active');
-        })
-    })
-</script>
-<script src="./js/webstorage.js"></script>
-<script src="./js/draganddrop.js"></script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./js/index.js"></script>
+    <script type="module" src="./js/webstorage.js"></script>
+    <script src="./js/draganddrop.js"></script>
+  </body>
 </html>

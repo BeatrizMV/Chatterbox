@@ -1,54 +1,42 @@
-// INDEX
+const form = document.querySelector(".tab-content");
 
-const form = document.querySelector('.tab-content');
-
-const getLoginName = document.querySelector('#login_username');
-const getLoginEmail = document.querySelector('#login_email');
-
-const getSignInName = document.querySelector('#signin_username');
-const getSignInEmail = document.querySelector('#signin_email');
-
-const submitLoginBtn = document.querySelector('#guardar_claves_login');
-const submitSignInBtn = document.querySelector('#guardar_claves_signin');
-
-
-form.addEventListener("submit", function(e) {
+form &&
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-});
+  });
 
-submitLoginBtn.addEventListener('click', function() {
-    localStorage.setItem('name', getLoginName.value);
-    localStorage.setItem('email', getLoginEmail.value);
+const saveUser = (name, email) => {
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
+};
 
-});
+const registerUser = (name, email) => {
+  const getSignInName = document.querySelector("#signin_username");
+  const getSignInEmail = document.querySelector("#signin_email");
 
-submitSignInBtn.addEventListener('click', function() {
-    console.log("clicked on sign in");
-    localStorage.setItem('name', getSignInName.value);
-    localStorage.setItem('email', getSignInEmail.value);
-    //AVATAR
-    const inputAvatar = document.querySelector("#avatar");
-    const file = inputAvatar.files[0];
-    console.log(file);
+  saveUser(getSignInName.value, getSignInEmail.value);
+  // AVATAR
+  const inputAvatar = document.querySelector("#avatar");
+
+  let file;
+  if (inputAvatar) {
+    file = inputAvatar.files[0];
 
     const reader = new FileReader();
     reader.onloadend = () => {
-        // convert file to base64 String
-        const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
-        // store file
-        localStorage.setItem('avatar', base64String);
+      // convert file to base64 String
+      const base64String = reader.result
+        .replace("data:", "")
+        .replace(/^.+,/, "");
+      // store file
+      localStorage.setItem("avatar", base64String);
     };
     reader.readAsDataURL(file);
-});
+  }
+};
 
-// SALA
+const saveRoom = (name) => {
+  localStorage.setItem("roomName", name);
+};
 
-const getRoom = document.querySelector('#buscasala');
-const submitSearchRoom = document.querySelector('#localstorageSalas');
-
-if(submitSearchRoom) {
-    submitSearchRoom.addEventListener('click', function() {
-        localStorage.setItem('name', getRoom.value);
-
-    });
-}
+export default { saveUser, registerUser, saveRoom };

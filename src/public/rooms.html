@@ -12,59 +12,75 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- FONT AWESOME -->
 
-    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
-            integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
-            crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
     <title>ChatterBox</title>
 </head>
 
 <body id="body" class="login chatroom">
-<div class="container-fluid">
-    <!-- NAVBAR -->
-    <nav class="">
-        <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
+    <div class="container-fluid">
+        <!-- NAVBAR -->
+        <nav class="">
+            <a class="" style="color: black; font-size: 25px;" href="/"><i class="fa fa-home" aria-hidden="true"></i>
             CHATTERBOX
         </a>
-    </nav>
-    <div id="chatwrap">
-        <div class="row">
-            <!-- ROOM SECTION-->
-            <div class="col-md-8">
-                <div class="card">
-                    <!-- CARD HEADER-->
-                    <div class="flexheader card-header bg-dark text-white">
-                        <h2 id="room-name"> Rooms</h2>
-                        <div id="creabuscawrap" class="btnwrap container-fluid">
-                            <div class="crear-sala">
-                                <div class="md-form mt-0 buscar">
-                                    <form class="form-inline">
-                                        <input id="buscasala" class="form-control" type="search"
-                                               placeholder="Nombre de la sala..." aria-label="Search">
-                                        <button id="localstorageSalas" class="btn btn-success" type="submit">
+        </nav>
+        <div id="chatwrap">
+            <div class="row">
+                <!-- ROOM SECTION-->
+                <div class="col-md-8">
+                    <div class="card">
+                        <!-- CARD HEADER-->
+                        <div class="flexheader card-header bg-dark text-white">
+                            <h2 id="room-finder">Playground</h2>
+                            <div id="creabuscawrap" class="btnwrap container-fluid">
+                                <div class="crear-sala">
+                                    <div class="md-form mt-0 buscar">
+                                        <form class="form-inline">
+                                            <input id="buscasala" class="form-control" type="search" placeholder="Nombre de la sala..." aria-label="Search">
+                                            <button id="localstorageSalas" class="btn btn-success" type="submit">
                                             Search
                                         </button>
-                                        <a id="crea-sala" href="#" type="button" class="btn btn-success">Crear
+                                            <a id="crea-sala" href="#" type="button" class="btn btn-success">Crear
                                             Sala</a>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- CARD BODY-->
+
+                        <div id="chat" class="card-body lists-D-and-D bg-dark">
+                            <ul id="" class="card-body ">
+                                <li class="list-group-item active">
+                                    <h5><b>Drag USERS</b> into their rooms</h5>
+                                </li>
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"></li>
+                            </ul>
+                            <ul id="chat" class="card-body chatlist-users">
+                                <li class="list-group-item active">
+                                    <h5><b>List of ROOMS</b> </h5>
+                                </li>
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"></li>
+                            </ul>
+                        </div>
+
                     </div>
+
+                    <!-- CARD FOOTER -->
                 </div>
-                <!-- CARD BODY-->
-                <div id="chat" class="card-body"></div>
-                <!-- CARD FOOTER -->
+                </form>
             </div>
-            </form>
         </div>
     </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous"></script>
-<script type="module" src="./js/rooms.js"></script>
-<script type="module" src="./js/webstorage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script type="module" src="./js/rooms.js"></script>
+    <script type="module" src="./js/webstorage.js"></script>
 </body>
 
 </html>

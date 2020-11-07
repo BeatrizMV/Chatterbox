@@ -1,4 +1,5 @@
 import webStorage from "./webstorage.js";
+import { drag, drop, allowDrop } from "./userdd.js";
 
 $(document).ready(function () {
   getRooms();
@@ -73,6 +74,13 @@ const appendRoom = (data) => {
   const text = document.createTextNode(data.name);
   textNode.className = "card_text";
   textNode.appendChild(text);
+
+  textNode.id = data.name;
+  // funcion drop definida en userdd.js
+  textNode.ondrop = drop;
+  // funcion allowdrop definida en userdd.js
+  textNode.ondragover = allowDrop;
+
   node.appendChild(textNode);
   roomsContainer.appendChild(node);
 };
@@ -86,6 +94,12 @@ const appendUser = (data) => {
   const text = document.createTextNode(data);
   textNode.className = "card_text";
   textNode.appendChild(text);
+
+  textNode.id = data;
+  textNode.draggable = "true";
+  // funcion drag definida en userdd.js
+  textNode.ondragstart = drag;
+
   node.appendChild(textNode);
   container.appendChild(node);
 };

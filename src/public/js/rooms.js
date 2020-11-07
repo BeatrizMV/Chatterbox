@@ -20,8 +20,9 @@ const getRooms = async () => {
 
     rooms.forEach((room) => {
       appendRoom(room);
-      webStorage.saveRoom(room.name);
     });
+
+    webStorage.saveRooms(rooms);
   }
 };
 
@@ -86,7 +87,6 @@ const appendRoom = (data) => {
 };
 
 const appendUser = (data) => {
-  console.log(data);
   const container = document.getElementById("users");
   const node = document.createElement("LI");
   node.className = "list-group-item";

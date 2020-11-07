@@ -17,11 +17,9 @@
     "url": "https://github.com/BeatrizMV/conquistar_celdas/issues"
   },
   "homepage": "https://github.com/BeatrizMV/conquistar_celdas#readme",
-  "dependencies": {
-    "connect-flash": "^0.1.1",
-    "nodemon": "^2.0.6"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "nodemon": "^2.0.6",
     "eslint": "^7.12.0",
     "eslint-config-prettier": "^6.14.0",
     "eslint-config-standard": "^15.0.0",

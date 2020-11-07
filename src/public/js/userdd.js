@@ -1,4 +1,5 @@
 import webStorage from "./webstorage.js";
+import roomsController from "./rooms.js";
 
 function drop(ev) {
   ev.preventDefault();
@@ -11,11 +12,12 @@ function drop(ev) {
 
   const data = ev.dataTransfer.getData("text");
 
-  const updatedRooms = rooms.map((room) => {
+  const updatedRooms = rooms.map((room, index) => {
     if (room.name === roomDropped)
       if (room.users.length < MAX_AMOUNT_OF_USERS) {
         room.users.push(data);
         ev.target.appendChild(document.getElementById(data));
+        roomsController.saveUserInRoom(index, data);
       } else alert("Hay demasiados usuarios en la sala");
     return room;
   });

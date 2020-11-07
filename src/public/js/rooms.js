@@ -103,3 +103,25 @@ const appendUser = (data) => {
   node.appendChild(textNode);
   container.appendChild(node);
 };
+
+const saveUserInRoom = async (id, email) => {
+  const url = new URL(`${baseURL}addUserToRoom`);
+
+  const result = await fetch(url, {
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      roomId: id,
+      email,
+    }),
+  });
+
+  if (result.status === 404) {
+    alert("El usuario no se ha podido añadir correctamente a la sala");
+  }
+};
+
+export default { saveUserInRoom };

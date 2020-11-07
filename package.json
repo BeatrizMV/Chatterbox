@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/BeatrizMV/conquistar_celdas#readme",
   "dependencies": {
-    "connect-flash": "^0.1.1"
+    "connect-flash": "^0.1.1",
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "eslint": "^7.12.0",

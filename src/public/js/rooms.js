@@ -2,6 +2,7 @@ import webStorage from "./webstorage.js";
 
 $(document).ready(function () {
   getRooms();
+  getUsers();
   document.getElementById("crea-sala").addEventListener("click", function () {
     newRoom();
   });
@@ -19,6 +20,20 @@ const getRooms = async () => {
     rooms.forEach((room) => {
       appendRoom(room);
       webStorage.saveRoom(room.name);
+    });
+  }
+};
+
+const getUsers = async () => {
+  const url = new URL(`${baseURL}users`);
+  const result = await fetch(url);
+
+  if (result.status === 200) {
+    const users = await result.json();
+    const actualUser = webStorage.getUser();
+
+    users.forEach((user) => {
+      if (user !== actualUser) appendUser(user);
     });
   }
 };
@@ -50,14 +65,27 @@ const newRoom = async () => {
   }
 };
 
-const appendRoom = (room) => {
-  const roomsContainer = document.getElementById("chat");
-  const node = document.createElement("DIV");
-  node.className = "rooms";
+const appendRoom = (data) => {
+  const roomsContainer = document.getElementById("chat-list");
+  const node = document.createElement("LI");
+  node.className = "list-group-item";
   const textNode = document.createElement("P");
-  const text = document.createTextNode(room.name);
+  const text = document.createTextNode(data.name);
   textNode.className = "card_text";
   textNode.appendChild(text);
   node.appendChild(textNode);
   roomsContainer.appendChild(node);
+};
+
+const appendUser = (data) => {
+  console.log(data);
+  const container = document.getElementById("users");
+  const node = document.createElement("LI");
+  node.className = "list-group-item";
+  const textNode = document.createElement("P");
+  const text = document.createTextNode(data);
+  textNode.className = "card_text";
+  textNode.appendChild(text);
+  node.appendChild(textNode);
+  container.appendChild(node);
 };

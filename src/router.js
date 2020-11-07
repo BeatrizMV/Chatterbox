@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const url = require("url");
 
-const loginController = require("./controllers/user");
+const usersController = require("./controllers/user");
 const roomsController = require("./controllers/room");
 const config = require("./config");
 
@@ -41,9 +41,11 @@ module.exports = function router(req, res) {
   const path = reqURL.pathname;
 
   if (path === "/login") {
-    if (req.method === "GET") loginController.checkLogin(req, res);
+    if (req.method === "GET") usersController.checkLogin(req, res);
+  } else if (path === "/users") {
+    if (req.method === "GET") usersController.getUsers(req, res);
   } else if (path === "/register") {
-    if (req.method === "POST") loginController.register(req, res);
+    if (req.method === "POST") usersController.register(req, res);
   } else if (path === "/rooms") {
     if (req.method === "GET") roomsController.getRooms(req, res);
   } else if (path === "/room") {

@@ -39,4 +39,8 @@ const saveRoom = (name) => {
   localStorage.setItem("roomName", name);
 };
 
-export default { saveUser, registerUser, saveRoom };
+const getUser = () => {
+  return localStorage.getItem("email");
+};
+
+export default { saveUser, registerUser, saveRoom, getUser };

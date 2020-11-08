@@ -10,7 +10,7 @@ const saveUser = (name, email) => {
   localStorage.setItem("email", email);
 };
 
-const registerUser = (name, email) => {
+const registerUser = () => {
   const getSignInName = document.querySelector("#signin_username");
   const getSignInEmail = document.querySelector("#signin_email");
 
@@ -35,8 +35,22 @@ const registerUser = (name, email) => {
   }
 };
 
-const saveRoom = (name) => {
-  localStorage.setItem("roomName", name);
+const saveRooms = (data) => {
+  localStorage.setItem("rooms", JSON.stringify(data));
 };
 
-export default { saveUser, registerUser, saveRoom };
+const getRooms = () => {
+  return JSON.parse(localStorage.getItem("rooms"));
+};
+
+const getUser = () => {
+  return localStorage.getItem("email");
+};
+
+export default {
+  saveUser,
+  registerUser,
+  saveRooms,
+  getRooms,
+  getUser,
+};

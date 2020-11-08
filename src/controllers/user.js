@@ -26,4 +26,9 @@ const register = (req, res) => {
   }
 };
 
-module.exports = { checkLogin, register };
+const getUsers = (_, res) => {
+  res.statusCode = 200;
+  res.end(JSON.stringify(users));
+};
+
+module.exports = { checkLogin, register, getUsers };

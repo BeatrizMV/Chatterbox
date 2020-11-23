@@ -23,6 +23,24 @@ function drop(ev) {
   });
 
   webStorage.saveRooms(updatedRooms);
+
+  // llamada al endpoint "/addUserRoom" pasandole el numero de sala y el email del usuario
+  fetch("/addUserToRoom", {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    method: "POST",
+    body: JSON.stringify({ roomId: roomDropped, email: data }),
+  })
+    .then(function (res) {
+      // en este punto deberiamos de ir a la sala
+      console.log(res);
+      console.log("User successfully added to the room");
+    })
+    .catch(function (res) {
+      console.log(res);
+    });
 }
 
 function allowDrop(ev) {

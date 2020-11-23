@@ -60,9 +60,6 @@ const addUserToRoom = async (req, res) => {
       res.end("The user doesn't exists");
     }
   }
-
-  res.statusCode = 404;
-  res.end("The room doesn't exists");
 };
 
 module.exports = { getRooms, getRoom, createRoom, addUserToRoom };

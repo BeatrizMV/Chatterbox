@@ -8,16 +8,11 @@ const checkLogin = (req, res) => {
   const email = reqURL.searchParams.get("email");
   const password = reqURL.searchParams.get("password");
 
-  const userPosition = userHelper.getUserId(email);
+  const user = userHelper.getUserFromEmail(email);
 
-  if (userPosition >= 0) {
-    if (userModel[userPosition].password === password) {
-      res.statusCode = 200;
-      res.end("User logged correctly");
-    } else {
-      res.statusCode = 404;
-      res.end("The user or the password are not correct");
-    }
+  if (user && user.password === password) {
+    res.statusCode = 200;
+    res.end("User logged correctly");
   } else {
     res.statusCode = 404;
     res.end("The user or the password are not correct");

@@ -1,4 +1,4 @@
-const { rooms } = require("../models/rooms");
+const rooms = require("../models/rooms");
 const config = require("../config");
 const userHelper = require("../helpers/user");
 

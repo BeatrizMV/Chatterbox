@@ -28,8 +28,8 @@ const createRoom = async (req, res) => {
 
   if (users)
     users.forEach((user) => {
-      if (userHelper.checkIfUserExists(user)) {
-        userIDs.push(userHelper.getUserId(user));
+      if (userHelper.getUserFromEmail(user)) {
+        userIDs.push(userHelper.getUserFromEmail(user));
       } else {
         res.statusCode = 404;
         res.end("Some of the users doesn't exists");
@@ -51,8 +51,8 @@ const addUserToRoom = async (req, res) => {
   }
 
   if (rooms[roomId]) {
-    if (userHelper.checkIfUserExists(email)) {
-      rooms[roomId].users.push(userHelper.getUserId(email));
+    if (userHelper.getUserFromEmail(email)) {
+      rooms[roomId].users.push(userHelper.getUserFromEmail(email));
       res.statusCode = 201;
       res.end("User added to the room");
     } else {

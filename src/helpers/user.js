@@ -1,8 +1,8 @@
+const { userModel } = require("../models");
 const { users } = require("../models/rooms");
 
 const checkIfUserExists = (email) => {
-  if (users.includes(email)) return true;
-  else return false;
+  return userModel.find((user) => user.email === email);
 };
 
 const getUserId = (email) => {

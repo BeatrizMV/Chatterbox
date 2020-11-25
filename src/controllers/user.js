@@ -8,7 +8,7 @@ const checkLogin = (req, res) => {
   const email = reqURL.searchParams.get("email");
   const password = reqURL.searchParams.get("password");
 
-  const userPosition = userHelper.checkIfUserExists(email);
+  const userPosition = userHelper.getUserId(email);
 
   if (userPosition >= 0) {
     if (userModel[userPosition].password === password) {

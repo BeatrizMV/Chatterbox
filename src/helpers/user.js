@@ -1,4 +1,4 @@
-const { users } = require("../models/index");
+const { users } = require("../models/rooms");
 
 const checkIfUserExists = (email) => {
   if (users.includes(email)) return true;

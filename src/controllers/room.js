@@ -1,4 +1,4 @@
-const { rooms } = require("../models/index");
+const { rooms } = require("../models/rooms");
 const config = require("../config");
 const userHelper = require("../helpers/user");
 
@@ -59,6 +59,9 @@ const addUserToRoom = async (req, res) => {
       res.statusCode = 404;
       res.end("The user doesn't exists");
     }
+  } else {
+    res.statusCode = 404;
+    res.end("The room doesn't exists");
   }
 };
 

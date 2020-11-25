@@ -33,11 +33,8 @@ function drop(ev) {
     method: "POST",
     body: JSON.stringify({ roomId: roomDropped, email: data }),
   })
-    .then(function (res) {
-      // en este punto deberiamos de ir a la sala
-      console.log(res);
-      console.log("User successfully added to the room");
-    })
+    .then((res) => res.json())
+    .then((res) => console.log(res))
     .catch(function (res) {
       console.log(res);
     });

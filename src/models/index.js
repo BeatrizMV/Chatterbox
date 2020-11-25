@@ -1,4 +1,4 @@
-const users = ["erikpastorrios1994@gmail.com", "pepito@gmail.com"];
-const rooms = [{ users: [], name: "First room" }];
+const roomModel = require("./rooms");
+const userModel = require("./users");
 
-module.exports = { users, rooms };
+module.exports = { roomModel, userModel };

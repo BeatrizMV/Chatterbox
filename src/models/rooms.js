@@ -1,3 +1,3 @@
-const rooms = [{ users: [], name: "First room" }];
+const rooms = [{ users: [], name: "Main room" }];
 
 module.exports = rooms;

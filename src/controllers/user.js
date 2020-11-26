@@ -1,6 +1,6 @@
 const { userModel } = require("../models/index");
 const config = require("../config");
-const userHelper = require("../helpers/user");
+const userHelper = require("../helpers/userHelper");
 
 const checkLogin = (req, res) => {
   const reqURL = new URL(`http://${config.hostname}${req.url}`);

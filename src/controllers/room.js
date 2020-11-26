@@ -1,6 +1,6 @@
 const rooms = require("../models/rooms");
 const config = require("../config");
-const userHelper = require("../helpers/user");
+const userHelper = require("../helpers/userHelper");
 
 const getRooms = async (_, res) => {
   res.statusCode = 200;

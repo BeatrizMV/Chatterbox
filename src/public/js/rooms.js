@@ -35,7 +35,7 @@ const getUsers = async () => {
     const actualUser = webStorage.getUser();
 
     users.forEach((user) => {
-      if (user !== actualUser) appendUser(user);
+      if (user.email !== actualUser) appendUser(user.email);
     });
   }
 };
@@ -104,7 +104,7 @@ const appendUser = (data) => {
   container.appendChild(node);
 };
 
-const saveUserInRoom = async (id, email) => {
+const saveUserInRoom = async (id, email, cb) => {
   const url = new URL(`${baseURL}addUserToRoom`);
 
   const result = await fetch(url, {
@@ -118,6 +118,10 @@ const saveUserInRoom = async (id, email) => {
       email,
     }),
   });
+
+  if (result.status === 201) {
+    cb();
+  }
 
   if (result.status === 404) {
     alert("El usuario no se ha podido añadir correctamente a la sala");

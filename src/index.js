@@ -1,14 +1,17 @@
 "use strict";
 
-const http = require("http");
+const express = require("express");
+const app = express();
+
+const path = require("path");
 
 const config = require("./config");
 
-const bodyParser = require("./body-parser");
 const router = require("./router");
 
-const server = http.createServer((req, res) => bodyParser(req, res, router));
+app.use(express.static(path.join(__dirname, "./public")));
+app.use(router);
 
-server.listen(config.port, config.hostname, () => {
+app.listen(config.port, config.hostname, () => {
   console.log(`Server listening on http://${config.hostname}:${config.port}`); // eslint-disable-line no-console
 });

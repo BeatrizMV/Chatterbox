@@ -3,6 +3,7 @@ const config = require("../config");
 const userHelper = require("../helpers/userHelper");
 
 const checkLogin = (req, res) => {
+  console.log(req);
   const reqURL = new URL(`http://${config.hostname}${req.url}`);
 
   const email = reqURL.searchParams.get("email");

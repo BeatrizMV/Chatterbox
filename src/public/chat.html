@@ -23,6 +23,7 @@
       integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Varela&display=swap"
       rel="stylesheet"
@@ -64,11 +65,11 @@
               <!-- CARD BODY-->
               <div id="chat" class="card-body"></div>
               <!-- CARD FOOTER -->
-              <form id="message-form" class="card-footer">
+              <form id="message-form" class="card-footer" onsubmit="submitMessage(); return false">
                 <div class="input-group">
-                  <input type="text" id="message" class="form-control" />
+                  <input type="text" id="message" class="form-control" autocomplete="off"/>
                   <div class="input-group-append">
-                    <button class="btn">
+                    <button class="btn" type="button" onclick="sendMessage()">
                       <i class="fas fa-location-arrow"></i> Send
                     </button>
                   </div>
@@ -85,5 +86,7 @@
       integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
       crossorigin="anonymous"
     ></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="./js/chat.js"></script>
   </body>
 </html>

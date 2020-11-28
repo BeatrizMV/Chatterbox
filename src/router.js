@@ -7,7 +7,7 @@ router.get("/login", usersController.checkLogin);
 router.get("/users", usersController.getUsers);
 router.post("/register", usersController.register);
 router.get("/rooms", roomsController.getRooms);
-router.get("/room", roomsController.getRoom);
+router.get("/room/:roomId", roomsController.getRoom);
 router.post("/room", roomsController.createRoom);
 router.post("/addUserToRoom", roomsController.addUserToRoom);
 

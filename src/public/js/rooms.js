@@ -35,7 +35,7 @@ const getUsers = async () => {
     const actualUser = webStorage.getUser();
 
     users.forEach((user) => {
-      if (user.email !== actualUser) appendUser(user.email);
+      if (user.email === actualUser) appendUser(user.email);
     });
   }
 };
@@ -104,7 +104,7 @@ const appendUser = (data) => {
   container.appendChild(node);
 };
 
-const saveUserInRoom = async (id, email, cb) => {
+const saveUserInRoom = async (id, email) => {
   const url = new URL(`${baseURL}addUserToRoom`);
 
   const result = await fetch(url, {
@@ -119,13 +119,20 @@ const saveUserInRoom = async (id, email, cb) => {
     }),
   });
 
-  if (result.status === 201) {
-    cb();
-  }
-
   if (result.status === 404) {
     alert("El usuario no se ha podido añadir correctamente a la sala");
   }
 };
 
-export default { saveUserInRoom };
+const redirectToRoom = async (roomId) => {
+  // Hacer esto cuando estemos en chat.html para poder pintar los datos?
+  const url = new URL(`${baseURL}room/${roomId}`);
+
+  const result = await fetch(url);
+
+  if (result.status === 200) {
+    window.location.replace("/chat.html");
+  }
+};
+
+export default { saveUserInRoom, redirectToRoom };

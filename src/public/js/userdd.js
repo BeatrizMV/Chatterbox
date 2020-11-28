@@ -17,12 +17,8 @@ function drop(ev) {
       if (room.users.length < MAX_AMOUNT_OF_USERS) {
         room.users.push(data);
         ev.target.appendChild(document.getElementById(data));
-        roomsHandler.saveUserInRoom(index, data, () => {
-          console.log(
-            "Successfully added the user to the room in the backend. Redirecting to the room now"
-          );
-          window.location.replace(`/room/${index}`);
-        });
+        roomsHandler.saveUserInRoom(index, data);
+        roomsHandler.redirectToRoom(index);
       } else alert("Hay demasiados usuarios en la sala");
     return room;
   });

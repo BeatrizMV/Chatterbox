@@ -1,5 +1,4 @@
 const rooms = require("../models/rooms");
-const config = require("../config");
 const userHelper = require("../helpers/userHelper");
 
 const getRooms = async (_, res) => {
@@ -8,9 +7,7 @@ const getRooms = async (_, res) => {
 };
 
 const getRoom = async (req, res) => {
-  const reqURL = new URL(`http://${config.hostname}${req.url}`);
-
-  const roomId = reqURL.searchParams.get("roomId");
+  const { roomId } = req.params;
 
   if (rooms[roomId]) {
     res.statusCode = 200;

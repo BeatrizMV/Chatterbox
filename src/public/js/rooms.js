@@ -115,7 +115,7 @@ const saveUserInRoom = async (id, email, cb) => {
     },
     body: JSON.stringify({
       roomId: id,
-      email,
+      email: email,
     }),
   });
 

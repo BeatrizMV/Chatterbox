@@ -3,14 +3,12 @@ const router = require("express").Router();
 const usersController = require("./controllers/user");
 const roomsController = require("./controllers/room");
 
-router.get("/login", (req, res) => usersController.checkLogin(req, res));
-router.get("/users", (req, res) => usersController.getUsers(req, res));
-router.post("/register", (req, res) => usersController.register());
-router.get("/rooms", (req, res) => roomsController.getRooms(req, res));
-router.get("/room", (req, res) => roomsController.getRoom());
-router.post("/room", (req, res) => roomsController.createRoom());
-router.post("/addUserToRoom", (req, res) =>
-  roomsController.addUserToRoom(req, res)
-);
+router.get("/login", usersController.checkLogin);
+router.get("/users", usersController.getUsers);
+router.post("/register", usersController.register);
+router.get("/rooms", roomsController.getRooms);
+router.get("/room", roomsController.getRoom);
+router.post("/room", roomsController.createRoom);
+router.post("/addUserToRoom", roomsController.addUserToRoom);
 
 module.exports = router;

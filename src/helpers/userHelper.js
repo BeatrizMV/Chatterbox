@@ -4,4 +4,8 @@ const getUserFromEmail = (email) => {
   return userModel.find((user) => user.email === email);
 };
 
-module.exports = { getUserFromEmail };
+const checkIfUserExists = (email) => {
+  return !!userModel.find((user) => user.email === email);
+};
+
+module.exports = { getUserFromEmail, checkIfUserExists };

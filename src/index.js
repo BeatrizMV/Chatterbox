@@ -12,7 +12,7 @@ const config = require("./config");
 const router = require("./router");
 
 app.use(bodyparser.json());
-app.use(express.static(path.join(__dirname, "./public")));
+app.use(express.static(path.join(__dirname, "./view")));
 app.use(router);
 
 app.listen(config.port, config.hostname, () => {

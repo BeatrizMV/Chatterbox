@@ -1,4 +1,4 @@
-var socket;
+let socket;
 
 function sendMessage(event) {
   // event.preventDefault();

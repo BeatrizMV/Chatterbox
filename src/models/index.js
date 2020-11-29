@@ -1,4 +1,4 @@
-const roomModel = require("./rooms");
-const userModel = require("./users");
+const roomModel = require("./roomModel");
+const userModel = require("./userModel");
 
 module.exports = { roomModel, userModel };

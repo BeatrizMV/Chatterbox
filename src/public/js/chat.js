@@ -1,8 +1,11 @@
+var socket;
+
 function sendMessage(event) {
     //event.preventDefault();
     const msg = document.getElementById("message").value;
     console.log("Sending message to the chat: " + msg);
     document.getElementById("message").value = "";
+    socket.emit('message', msg);
 }
 
 function submitMessage(event) {
@@ -12,6 +15,6 @@ function submitMessage(event) {
 
 $(document).ready(function () {
     console.log("after page loaded");
-    //var socket = io.connect("http://localhost:3000");
-    var socket = io.connect("http://localhost:8000");
+    socket = io.connect("http://localhost:8000");
+
 })

@@ -27,6 +27,10 @@ function createMsgElemInScreen (msg, isMine){
     }
     listItem.appendChild(text);
     messages.appendChild(listItem);
+
+    //Scroll hasta abajo
+    const container = document.getElementById("chat");
+    container.scrollTop = container.scrollHeight;
 }
 
 $(document).ready(function () {

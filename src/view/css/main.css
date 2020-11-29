@@ -412,4 +412,5 @@ input[type="checkbox"]:checked+label::before,
 
 .message_container {
     height: 60vh;
+    overflow-y: scroll;
 }

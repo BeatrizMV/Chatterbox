@@ -385,13 +385,29 @@ input[type="checkbox"]:checked+label::before,
 }
 
 .message_sent {
-    color: black;
+    color: #48af4c;
     list-style: none;
-    border: 1px solid black;
+    border: 3px solid #48af4c;
     border-radius: 5px;
     padding: 0.5rem;
     margin-top: 1rem;
-    background-color: #d5dbdd;
+    /*background-color: #d5dbdd;*/
+    margin-right: 3rem;
+}
+
+.message_sent--mine {
+    color: #32879c;
+    list-style: none;
+    border: 3px solid #32879c;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    /*background-color: red; */
+    margin-left: 3rem;
+}
+
+.message-list {
+    padding: 0;
 }
 
 .message_container {

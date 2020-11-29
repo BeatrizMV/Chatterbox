@@ -6,6 +6,7 @@ function sendMessage(event) {
     console.log("Sending message to the chat: " + msg);
     document.getElementById("message").value = "";
     socket.emit('message', msg);
+    createMsgElemInScreen(msg, true);
 }
 
 function submitMessage(event) {
@@ -13,13 +14,17 @@ function submitMessage(event) {
     sendMessage(event);
 }
 
-function createMsgElemInScreen (msg){
+function createMsgElemInScreen (msg, isMine){
     //cogemos el contenedor de los mensajes
     const messages = document.getElementById("messages-list");
     //creamos el list item para el mensaje
     const listItem = document.createElement("LI");
     const text = document.createTextNode(msg);
-    listItem.className = "message_sent";
+    if(isMine) {
+        listItem.className = "message_sent--mine";
+    } else {
+        listItem.className = "message_sent";
+    }
     listItem.appendChild(text);
     messages.appendChild(listItem);
 }
@@ -30,7 +35,7 @@ $(document).ready(function () {
 
     socket.on('message', function(msg){
         console.log("Received message from socket: " + msg);
-        createMsgElemInScreen(msg);
+        createMsgElemInScreen(msg, false);
     });
 
 })

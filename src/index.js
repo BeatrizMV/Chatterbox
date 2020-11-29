@@ -33,7 +33,7 @@ io.on("connection", (socket) => {
   socket.on('message', (msg) => {
     console.log('Message received: ' + msg);
     //Mandamos el mensaje a todos los usuarios a la escucha
-    io.emit('message', msg);
+    socket.broadcast.emit('message', msg);
 
   });
 

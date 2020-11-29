@@ -10,6 +10,10 @@ const saveUser = (name, email) => {
   localStorage.setItem("email", email);
 };
 
+const connectedRoom = (roomId) => {
+  localStorage.setItem("connectedRoom", roomId);
+};
+
 const registerUser = () => {
   const getSignInName = document.querySelector("#signin_username");
   const getSignInEmail = document.querySelector("#signin_email");
@@ -53,4 +57,5 @@ export default {
   saveRooms,
   getRooms,
   getUser,
+  connectedRoom,
 };

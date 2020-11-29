@@ -67,9 +67,18 @@
                 <ul id="messages-list" class="message-list"></ul>
               </div>
               <!-- CARD FOOTER -->
-              <form id="message-form" class="card-footer" onsubmit="submitMessage(); return false">
+              <form
+                id="message-form"
+                class="card-footer"
+                onsubmit="submitMessage(); return false"
+              >
                 <div class="input-group">
-                  <input type="text" id="message" class="form-control" autocomplete="off"/>
+                  <input
+                    type="text"
+                    id="message"
+                    class="form-control"
+                    autocomplete="off"
+                  />
                   <div class="input-group-append">
                     <button class="btn" type="button" onclick="sendMessage()">
                       <i class="fas fa-location-arrow"></i> Send
@@ -89,6 +98,6 @@
       crossorigin="anonymous"
     ></script>
     <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script src="./js/chat.js"></script>
+    <script type="module" src="./js/chat.js"></script>
   </body>
 </html>

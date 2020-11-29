@@ -49,7 +49,6 @@ const addUserToRoom = async (req, res) => {
 
   if (rooms[roomId]) {
     if (userHelper.getUserFromEmail(email)) {
-      rooms[roomId].users.push(userHelper.getUserFromEmail(email));
       res.statusCode = 201;
       res.end("User added to the room");
     } else {
@@ -62,4 +61,9 @@ const addUserToRoom = async (req, res) => {
   }
 };
 
-module.exports = { getRooms, getRoom, createRoom, addUserToRoom };
+module.exports = {
+  getRooms,
+  getRoom,
+  createRoom,
+  addUserToRoom,
+};

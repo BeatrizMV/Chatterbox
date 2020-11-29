@@ -130,6 +130,8 @@ const redirectToRoom = async (roomId) => {
 
   const result = await fetch(url);
 
+  webStorage.connectedRoom(roomId);
+
   if (result.status === 200) {
     window.location.replace("/chat.html");
   }

@@ -1,3 +1,5 @@
+import webStorage from "./webstorage.js";
+
 let socket;
 
 function sendMessage(event) {
@@ -35,9 +37,29 @@ function addMessageToScreen(message, isMine) {
   container.scrollTop = container.scrollHeight;
 }
 
+const baseURL = "http://localhost:3000/";
+
 $(document).ready(function () {
+  const data = {
+    user: localStorage.getItem("email"),
+    room: localStorage.getItem("connectedRoom"),
+  };
+
   // eslint-disable-next-line no-undef
-  socket = io.connect("http://localhost:8000");
+  socket = io.connect("http://localhost:8000", {
+    query: `data=${JSON.stringify(data)}`,
+  });
+
+  socket.on("newUserConnected", async () => {
+    const url = new URL(`${baseURL}rooms`);
+    const result = await fetch(url);
+
+    if (result.status === 200) {
+      const rooms = await result.json();
+
+      webStorage.saveRooms(rooms);
+    }
+  });
 
   socket.on("message", function (message) {
     addMessageToScreen(message, false);

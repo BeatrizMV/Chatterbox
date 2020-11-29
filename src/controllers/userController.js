@@ -20,8 +20,9 @@ const checkLogin = (req, res) => {
 };
 
 const register = (req, res) => {
-  const { email } = req.body;
-  const isAdded = !userHelper.checkIfUserExists(email) && userModel.push(email);
+  const { email, password, name } = req.body;
+  const user = { email, password, name };
+  const isAdded = !userHelper.checkIfUserExists(email) && userModel.push(user);
   if (isAdded) {
     res.statusCode = 201;
     res.end("User added");

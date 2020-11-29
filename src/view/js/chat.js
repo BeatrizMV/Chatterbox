@@ -1,4 +1,4 @@
-import webstorage from "./webstorage.js";
+//import webStorage from "./webstorage.js";
 
 let socket;
 
@@ -45,16 +45,6 @@ $(document).ready(function () {
     room: localStorage.getItem("connectedRoom"),
   };
 
-  const rooms = webstorage.getRooms();
-
-  const roomName = rooms[localStorage.getItem("connectedRoom")].name;
-
-  console.log(rooms);
-
-  const roomTitle = document.getElementById("room-name");
-
-  roomTitle.innerHTML = roomName;
-
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {
     query: `data=${JSON.stringify(data)}`,
@@ -67,7 +57,7 @@ $(document).ready(function () {
     if (result.status === 200) {
       const rooms = await result.json();
 
-      webstorage.saveRooms(rooms);
+      webStorage.saveRooms(rooms);
     }
   });
 

@@ -383,3 +383,17 @@ input[type="checkbox"]:checked+label::before,
     font-size: 11px;
     text-align: center;
 }
+
+.message_sent {
+    color: black;
+    list-style: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin-top: 1rem;
+    background-color: #d5dbdd;
+}
+
+.message_container {
+    height: 60vh;
+}

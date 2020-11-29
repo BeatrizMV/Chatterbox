@@ -27,6 +27,14 @@ const server = http
 
 const io = socket(server, { cors: { origin: "*" } });
 
-io.on("connection", () => {
+io.on("connection", (socket) => {
   console.log("Nuevo usuario conectado");
+
+  socket.on('message', (msg) => {
+    console.log('Message received: ' + msg);
+    //Mandamos el mensaje a todos los usuarios a la escucha
+    io.emit('message', msg);
+
+  });
+
 });

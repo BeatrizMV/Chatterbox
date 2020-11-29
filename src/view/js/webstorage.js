@@ -47,6 +47,12 @@ const getRooms = () => {
   return JSON.parse(localStorage.getItem("rooms"));
 };
 
+const saveRoom = (data) => {
+  const rooms = getRooms();
+  rooms.push(data);
+  saveRooms(rooms);
+};
+
 const getUser = () => {
   return localStorage.getItem("email");
 };
@@ -58,4 +64,5 @@ export default {
   getRooms,
   getUser,
   connectedRoom,
+  saveRoom,
 };

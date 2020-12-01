@@ -21,7 +21,7 @@ $(document).ready(function () {
   contextMouse.lineJoin = contextMouse.lineCap = "round";
 
   var isDrawing;
-    var points = [];
+  var points = [];
 
   canvasMouse.onmousedown = function (e) {
     var trueX = e.clientX - canvasMouse.getBoundingClientRect().left;
@@ -51,3 +51,10 @@ $(document).ready(function () {
     points.length = 0;
   };
 });
+
+// eslint-disable-next-line no-unused-vars
+function eraseCanvas() {
+  var canvasMouse = document.getElementById("drawing");
+  const context = canvasMouse.getContext("2d");
+  context.clearRect(0, 0, canvasMouse.width, canvasMouse.height);
+}

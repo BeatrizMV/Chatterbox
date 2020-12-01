@@ -1,5 +1,3 @@
-//import webStorage from "./webstorage.js";
-
 let socket;
 
 function sendMessage(event) {
@@ -39,11 +37,38 @@ function addMessageToScreen(message, isMine) {
 
 const baseURL = "http://localhost:3000/";
 
+const cleanUsers = () => {
+  const usernames = document.getElementById("usernames");
+  usernames.removeChild(usernames.lastElementChild);
+};
+
+const printUsers = () => {
+  const rooms = JSON.parse(localStorage.getItem("rooms"));
+  const actualRoom = localStorage.getItem("connectedRoom");
+
+  const usernames = document.getElementById("usernames");
+  const node = document.createElement("UL");
+  node.className = "user-list";
+
+  rooms[actualRoom].users.forEach((user) => {
+    const userElement = document.createElement("LI");
+    const textNode = document.createElement("P");
+    const text = document.createTextNode(user);
+    textNode.className = "card_text";
+    textNode.appendChild(text);
+    userElement.appendChild(textNode);
+    node.appendChild(userElement);
+  });
+  usernames.appendChild(node);
+};
+
 $(document).ready(function () {
   const data = {
     user: localStorage.getItem("email"),
     room: localStorage.getItem("connectedRoom"),
   };
+
+  printUsers();
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {
@@ -57,7 +82,11 @@ $(document).ready(function () {
     if (result.status === 200) {
       const rooms = await result.json();
 
-      webStorage.saveRooms(rooms);
+      // eslint-disable-next-line no-undef
+      localStorage.setItem("rooms", JSON.stringify(rooms));
+
+      cleanUsers();
+      printUsers();
     }
   });
 

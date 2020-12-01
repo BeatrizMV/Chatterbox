@@ -10,8 +10,8 @@
 
 $(document).ready(function () {
   // Get the drawing canvas
-  var canvasMouse = document.getElementById("drawing");
-  var contextMouse = canvasMouse.getContext("2d");
+  const canvasMouse = document.getElementById("drawing");
+  const contextMouse = canvasMouse.getContext("2d");
 
   // $("#clear").on('click', function () {
   //     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -20,12 +20,12 @@ $(document).ready(function () {
   contextMouse.lineWidth = 10;
   contextMouse.lineJoin = contextMouse.lineCap = "round";
 
-  var isDrawing;
-  var points = [];
+  let isDrawing;
+  const points = [];
 
   canvasMouse.onmousedown = function (e) {
-    var trueX = e.clientX - canvasMouse.getBoundingClientRect().left;
-    var trueY = e.clientY - canvasMouse.getBoundingClientRect().top;
+    const trueX = e.clientX - canvasMouse.getBoundingClientRect().left;
+    const trueY = e.clientY - canvasMouse.getBoundingClientRect().top;
     isDrawing = true;
     points.push({ x: trueX, y: trueY });
   };
@@ -33,13 +33,13 @@ $(document).ready(function () {
   canvasMouse.onmousemove = function (e) {
     if (!isDrawing) return;
 
-    var trueX = e.clientX - canvasMouse.getBoundingClientRect().left;
-    var trueY = e.clientY - canvasMouse.getBoundingClientRect().top;
+    const trueX = e.clientX - canvasMouse.getBoundingClientRect().left;
+    const trueY = e.clientY - canvasMouse.getBoundingClientRect().top;
     points.push({ x: trueX, y: trueY });
 
     contextMouse.beginPath();
     contextMouse.moveTo(points[0].x, points[0].y);
-    for (var i = 1; i < points.length; i++) {
+    for (let i = 1; i < points.length; i++) {
       contextMouse.lineTo(points[i].x, points[i].y);
     }
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
 
 // eslint-disable-next-line no-unused-vars
 function eraseCanvas() {
-  var canvasMouse = document.getElementById("drawing");
+  const canvasMouse = document.getElementById("drawing");
   const context = canvasMouse.getContext("2d");
   context.clearRect(0, 0, canvasMouse.width, canvasMouse.height);
 }

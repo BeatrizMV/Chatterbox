@@ -381,6 +381,13 @@ input[type="checkbox"]:checked + label::before,
   text-align: center;
 }
 
+.message_sent,
+.message_sent--mine {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
 .message_sent {
   color: #48af4c;
   list-style: none;
@@ -410,4 +417,10 @@ input[type="checkbox"]:checked + label::before,
 .message_container {
   height: 60vh;
   overflow-y: scroll;
+}
+
+p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }

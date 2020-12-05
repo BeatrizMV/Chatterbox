@@ -6,9 +6,11 @@ function sendMessage(event) {
     message: document.getElementById("message").value,
     user: localStorage.getItem("email"),
   };
-  socket.emit("message", message);
-  document.getElementById("message").value = "";
-  addMessageToScreen(message, true);
+  if (message.message) {
+    socket.emit("message", message);
+    document.getElementById("message").value = "";
+    addMessageToScreen(message, true);
+  }
 }
 
 // eslint-disable-next-line no-unused-vars

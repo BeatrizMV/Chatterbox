@@ -49,7 +49,13 @@ const getRooms = () => {
 
 const saveRoom = (data) => {
   const rooms = getRooms();
-  rooms.push(data);
+  const objToSave = {
+    users: [],
+    name: data,
+    messages: [],
+    blockedUsers: [],
+  };
+  rooms.push(objToSave);
   saveRooms(rooms);
 };
 

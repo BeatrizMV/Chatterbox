@@ -6,12 +6,12 @@ form &&
   });
 
 const saveUser = (name, email) => {
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
+  sessionStorage.setItem("name", name);
+  sessionStorage.setItem("email", email);
 };
 
 const connectedRoom = (roomId) => {
-  localStorage.setItem("connectedRoom", roomId);
+  sessionStorage.setItem("connectedRoom", roomId);
 };
 
 const registerUser = () => {
@@ -33,18 +33,18 @@ const registerUser = () => {
         .replace("data:", "")
         .replace(/^.+,/, "");
       // store file
-      localStorage.setItem("avatar", base64String);
+      sessionStorage.setItem("avatar", base64String);
     };
     reader.readAsDataURL(file);
   }
 };
 
 const saveRooms = (data) => {
-  localStorage.setItem("rooms", JSON.stringify(data));
+  sessionStorage.setItem("rooms", JSON.stringify(data));
 };
 
 const getRooms = () => {
-  return JSON.parse(localStorage.getItem("rooms"));
+  return JSON.parse(sessionStorage.getItem("rooms"));
 };
 
 const saveRoom = (data) => {
@@ -60,7 +60,7 @@ const saveRoom = (data) => {
 };
 
 const getUser = () => {
-  return localStorage.getItem("email");
+  return sessionStorage.getItem("email");
 };
 
 export default {

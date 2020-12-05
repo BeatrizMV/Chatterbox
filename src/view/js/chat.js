@@ -2,10 +2,10 @@ let socket;
 
 function sendMessage(event) {
   // event.preventDefault();
-  const roomName = getRoomNameFromLocalStorage();
+  const roomName = getRoomNameFromSessionStorage();
   const message = {
     message: document.getElementById("message").value,
-    user: localStorage.getItem("email"),
+    user: sessionStorage.getItem("email"),
     roomName: roomName,
   };
   if (message.message) {
@@ -62,8 +62,8 @@ const cleanUsers = () => {
 };
 
 const printUsers = () => {
-  const rooms = JSON.parse(localStorage.getItem("rooms"));
-  const actualRoom = localStorage.getItem("connectedRoom");
+  const rooms = JSON.parse(sessionStorage.getItem("rooms"));
+  const actualRoom = sessionStorage.getItem("connectedRoom");
 
   const usernames = document.getElementById("usernames");
   const node = document.createElement("UL");
@@ -81,18 +81,18 @@ const printUsers = () => {
   usernames.appendChild(node);
 };
 
-function getRoomNameFromLocalStorage() {
-  const roomNumber = localStorage.getItem("connectedRoom");
+function getRoomNameFromSessionStorage() {
+  const roomNumber = sessionStorage.getItem("connectedRoom");
   return getRoomName(roomNumber);
 }
 
 function getRoomName(roomNumber) {
-  // we have the room name in the 'rooms' attribute in localstorage, which we can
+  // we have the room name in the 'rooms' attribute in sessionstorage, which we can
   // access via the 'connectedRoom' value
   // if we don't find a use for an AJAX request, make this a request in order to
   // at least have a GET implemented
-  const roomsFromLocalStorage = localStorage.getItem("rooms");
-  const lsRoomsObj = JSON.parse(roomsFromLocalStorage);
+  const roomsFromSessionStorage = sessionStorage.getItem("rooms");
+  const lsRoomsObj = JSON.parse(roomsFromSessionStorage);
   const roomObj = lsRoomsObj[roomNumber];
   return roomObj.name;
 }
@@ -106,8 +106,8 @@ function replaceRoomName(roomNumber) {
 
 $(document).ready(function () {
   const data = {
-    user: localStorage.getItem("email"),
-    room: localStorage.getItem("connectedRoom"),
+    user: sessionStorage.getItem("email"),
+    room: sessionStorage.getItem("connectedRoom"),
   };
 
   printUsers();
@@ -131,7 +131,7 @@ $(document).ready(function () {
       const rooms = await result.json();
 
       // eslint-disable-next-line no-undef
-      localStorage.setItem("rooms", JSON.stringify(rooms));
+      sessionStorage.setItem("rooms", JSON.stringify(rooms));
 
       cleanUsers();
       printUsers();

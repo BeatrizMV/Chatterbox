@@ -33,6 +33,7 @@ module.exports = function () {
       const { roomName } = message;
       if (roomName) {
         console.log("Sending message to room: " + roomName);
+        console.log("Message content: " + JSON.stringify(message));
         socket.to(roomName).emit("message", socket.id, message);
       }
     });

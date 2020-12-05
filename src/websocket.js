@@ -22,9 +22,19 @@ module.exports = function () {
 
     socket.broadcast.emit("newUserConnected");
 
+    socket.on("room", function (room) {
+      console.log("room message received: " + room);
+      socket.join(room);
+    });
+
     socket.on("message", (message) => {
       // Mandamos el mensaje a todos los usuarios a la escucha
-      socket.broadcast.emit("message", message);
+      // socket.broadcast.emit("message", message);
+      const { roomName } = message;
+      if (roomName) {
+        console.log("Sending message to room: " + roomName);
+        socket.to(roomName).emit("message", socket.id, message);
+      }
     });
   });
 };

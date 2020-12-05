@@ -2,9 +2,11 @@ let socket;
 
 function sendMessage(event) {
   // event.preventDefault();
+  const roomName = getRoomNameFromLocalStorage();
   const message = {
     message: document.getElementById("message").value,
     user: localStorage.getItem("email"),
+    roomName: roomName,
   };
   if (message.message) {
     socket.emit("message", message);
@@ -79,7 +81,12 @@ const printUsers = () => {
   usernames.appendChild(node);
 };
 
-function replaceRoomName(roomNumber) {
+function getRoomNameFromLocalStorage() {
+  const roomNumber = localStorage.getItem("connectedRoom");
+  return getRoomName(roomNumber);
+}
+
+function getRoomName(roomNumber) {
   // we have the room name in the 'rooms' attribute in localstorage, which we can
   // access via the 'connectedRoom' value
   // if we don't find a use for an AJAX request, make this a request in order to
@@ -87,9 +94,14 @@ function replaceRoomName(roomNumber) {
   const roomsFromLocalStorage = localStorage.getItem("rooms");
   const lsRoomsObj = JSON.parse(roomsFromLocalStorage);
   const roomObj = lsRoomsObj[roomNumber];
-  const roomName = roomObj.name;
+  return roomObj.name;
+}
+
+function replaceRoomName(roomNumber) {
+  const roomName = getRoomName(roomNumber);
   const domElem = document.getElementById("room-name");
   domElem.textContent = roomName;
+  return roomName;
 }
 
 $(document).ready(function () {
@@ -100,11 +112,15 @@ $(document).ready(function () {
 
   printUsers();
 
-  replaceRoomName(data.room);
+  const roomName = replaceRoomName(data.room);
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {
     query: `data=${JSON.stringify(data)}`,
+  });
+
+  socket.on("connect", () => {
+    socket.emit("room", roomName);
   });
 
   socket.on("newUserConnected", async () => {
@@ -122,7 +138,7 @@ $(document).ready(function () {
     }
   });
 
-  socket.on("message", function (message) {
+  socket.on("message", function (socket, message) {
     addMessageToScreen(message, false);
   });
 });

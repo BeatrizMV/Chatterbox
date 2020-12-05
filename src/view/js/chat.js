@@ -77,6 +77,19 @@ const printUsers = () => {
   usernames.appendChild(node);
 };
 
+function replaceRoomName(roomNumber) {
+  // we have the room name in the 'rooms' attribute in localstorage, which we can
+  // access via the 'connectedRoom' value
+  // if we don't find a use for an AJAX request, make this a request in order to
+  // at least have a GET implemented
+  const roomsFromLocalStorage = localStorage.getItem("rooms");
+  const lsRoomsObj = JSON.parse(roomsFromLocalStorage);
+  const roomObj = lsRoomsObj[roomNumber];
+  const roomName = roomObj.name;
+  const domElem = document.getElementById("room-name");
+  domElem.textContent = roomName;
+}
+
 $(document).ready(function () {
   const data = {
     user: localStorage.getItem("email"),
@@ -84,6 +97,8 @@ $(document).ready(function () {
   };
 
   printUsers();
+
+  replaceRoomName(data.room);
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {

@@ -33,7 +33,7 @@ const createRoom = async (req, res) => {
       }
     });
 
-  const roomId = rooms.push({ users: userIDs, name });
+  const roomId = rooms.push({ users: userIDs, name: name, blockedUsers: [] });
 
   res.statusCode = 201;
   res.end(JSON.stringify(rooms[roomId - 1]));
@@ -61,9 +61,26 @@ const addUserToRoom = async (req, res) => {
   }
 };
 
+const blockUser = async (req, res) => {
+  const { email, room } = req.body;
+  console.log(`Blocking user ${email} at room ${room}`);
+  let roomObj;
+  for (const rObj of rooms) {
+    const { name } = rObj;
+    if (name === room) {
+      roomObj = rObj;
+      break;
+    }
+  }
+  roomObj.blockedUsers.push(email);
+  res.statusCode = 201;
+  res.json(roomObj);
+};
+
 module.exports = {
   getRooms,
   getRoom,
   createRoom,
   addUserToRoom,
+  blockUser,
 };

@@ -1,3 +1,4 @@
+// import webStorage from "./webstorage";
 let socket;
 
 function sendMessage(event) {
@@ -82,6 +83,25 @@ const printUsers = () => {
     textNode.appendChild(text);
     userElement.appendChild(textNode);
     node.appendChild(userElement);
+
+    textNode.addEventListener("click", () => {
+      console.log("selected user for banning: " + user);
+      const blockButton = document.getElementById("block-user-btn");
+      // only enable the clicks when the blockButton is visible
+      if (blockButton && !blockButton.classList.contains("d-none")) {
+        if (textNode.classList.contains("card-text--selected")) {
+          textNode.classList.remove("card-text--selected");
+          console.log("Removing selection for " + user);
+          sessionStorage.setItem("selected-blocking-user", "");
+          blockButton.classList.add("disabled");
+        } else {
+          textNode.classList.add("card-text--selected");
+          console.log("Adding selection for " + user);
+          sessionStorage.setItem("selected-blocking-user", user);
+          blockButton.classList.remove("disabled");
+        }
+      }
+    });
   });
   usernames.appendChild(node);
 };
@@ -95,6 +115,10 @@ function printBlockedUsers(isAdmin) {
     const actualRoom = sessionStorage.getItem("connectedRoom");
 
     const usernames = document.getElementById("blocked-usernames");
+    // delete the children, so there are no duplicated elements
+    if (usernames.firstElementChild) {
+      usernames.removeChild(usernames.firstElementChild);
+    }
     const node = document.createElement("UL");
     node.className = "blocked-user-list";
 
@@ -136,14 +160,61 @@ function replaceRoomName(roomNumber) {
   return roomName;
 }
 
-function setAdminPillVisibility(currentRoomObj, userEmail) {
+function setAdminVisibilityElems(currentRoomObj, userEmail) {
   const pillDomObj = document.getElementById("admin-pill");
+  const blockButton = document.getElementById("block-user-btn");
   const { roomCreator } = currentRoomObj;
   if (roomCreator === userEmail) {
     pillDomObj.classList.remove("d-none");
+    blockButton.classList.remove("d-none");
     return true;
   }
   return false;
+}
+
+// eslint-disable-next-line no-undef,no-unused-vars
+async function addSelectedToBlocked() {
+  const selectedUserFromStorage = sessionStorage.getItem(
+    "selected-blocking-user"
+  );
+  const roomName = getRoomNameFromSessionStorage();
+  if (selectedUserFromStorage) {
+    console.log(
+      "Adding the following user to the blocked list: " +
+        selectedUserFromStorage
+    );
+    const url = "/block-user";
+    const result = await fetch(url, {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: selectedUserFromStorage,
+        room: roomName,
+      }),
+    });
+
+    if (result.status === 201) {
+      const resp = await result.json();
+      const { blockedUsers } = resp;
+      console.log(
+        "Response from /block-user call. Blocked users: " + blockedUsers
+      );
+      // update the localstorage and this way re-render the users reading from there
+      const roomsAtStorage = JSON.parse(localStorage.getItem("rooms"));
+      const roomId = sessionStorage.getItem("connectedRoom");
+      roomsAtStorage[roomId] = resp;
+      console.log("Updating localstorage to use: " + roomsAtStorage);
+      localStorage.setItem("rooms", JSON.stringify(roomsAtStorage));
+
+      // this function is only reached when admin, so pass a true
+      printBlockedUsers(true);
+    }
+  } else {
+    console.log("No user retrieved from the storage");
+  }
 }
 
 $(document).ready(function () {
@@ -158,7 +229,7 @@ $(document).ready(function () {
 
   const roomName = replaceRoomName(data.room);
 
-  const isAdmin = setAdminPillVisibility(roomsObj[data.room], data.user);
+  const isAdmin = setAdminVisibilityElems(roomsObj[data.room], data.user);
   printBlockedUsers(isAdmin);
 
   // eslint-disable-next-line no-undef

@@ -293,6 +293,10 @@ input[type="checkbox"]:checked + label::before,
   padding: 1em;
 }
 
+.card-text--selected {
+  background-color: #c7cdd0;
+}
+
 .flexheader {
   display: flex;
   align-content: space-between;
@@ -423,4 +427,15 @@ p {
   margin: 0;
   margin-block-start: 0;
   margin-block-end: 0;
+}
+
+.user-list {
+  padding: 0;
+}
+
+.block-btn {
+  color: #fff;
+  font-family: "Varela", sans-serif;
+  border-radius: 10px;
+  border-color: #fff;
 }

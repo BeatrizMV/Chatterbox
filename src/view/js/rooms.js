@@ -42,6 +42,7 @@ const getUsers = async () => {
 
 const newRoom = async () => {
   const name = document.getElementById("buscasala").value;
+  const roomCreator = sessionStorage.getItem("email");
 
   if (name) {
     const url = new URL(`${baseURL}room`);
@@ -59,7 +60,7 @@ const newRoom = async () => {
 
     if (result.status === 201) {
       const room = await result.json();
-      webStorage.saveRoom(name);
+      webStorage.saveRoom(name, roomCreator);
       appendRoom(room);
     }
   } else {

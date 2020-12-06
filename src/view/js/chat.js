@@ -20,6 +20,11 @@ function submitMessage(event) {
   sendMessage(event);
 }
 
+// eslint-disable-next-line no-unused-vars
+function navigateToRooms() {
+  window.location = "/rooms.html";
+}
+
 function addMessageToScreen(message, isMine) {
   // cogemos el contenedor de los mensajes
   const messages = document.getElementById("messages-list");
@@ -104,15 +109,27 @@ function replaceRoomName(roomNumber) {
   return roomName;
 }
 
+function setAdminPillVisibility(currentRoomObj, userEmail) {
+  const pillDomObj = document.getElementById("admin-pill");
+  const { roomCreator } = currentRoomObj;
+  if (roomCreator === userEmail) {
+    pillDomObj.classList.remove("d-none");
+  }
+}
+
 $(document).ready(function () {
   const data = {
     user: sessionStorage.getItem("email"),
     room: sessionStorage.getItem("connectedRoom"),
   };
 
+  const roomsObj = JSON.parse(sessionStorage.getItem("rooms"));
+
   printUsers();
 
   const roomName = replaceRoomName(data.room);
+
+  setAdminPillVisibility(roomsObj[data.room], data.user);
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {

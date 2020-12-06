@@ -47,13 +47,14 @@ const getRooms = () => {
   return JSON.parse(sessionStorage.getItem("rooms"));
 };
 
-const saveRoom = (data) => {
+const saveRoom = (data, roomCreator) => {
   const rooms = getRooms();
   const objToSave = {
     users: [],
     name: data,
     messages: [],
     blockedUsers: [],
+    roomCreator: roomCreator,
   };
   rooms.push(objToSave);
   saveRooms(rooms);

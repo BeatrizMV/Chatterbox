@@ -40,11 +40,11 @@ const registerUser = () => {
 };
 
 const saveRooms = (data) => {
-  sessionStorage.setItem("rooms", JSON.stringify(data));
+  localStorage.setItem("rooms", JSON.stringify(data));
 };
 
 const getRooms = () => {
-  return JSON.parse(sessionStorage.getItem("rooms"));
+  return JSON.parse(localStorage.getItem("rooms"));
 };
 
 const saveRoom = (data, roomCreator) => {

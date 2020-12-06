@@ -67,7 +67,7 @@ const cleanUsers = () => {
 };
 
 const printUsers = () => {
-  const rooms = JSON.parse(sessionStorage.getItem("rooms"));
+  const rooms = JSON.parse(localStorage.getItem("rooms"));
   const actualRoom = sessionStorage.getItem("connectedRoom");
 
   const usernames = document.getElementById("usernames");
@@ -96,7 +96,7 @@ function getRoomName(roomNumber) {
   // access via the 'connectedRoom' value
   // if we don't find a use for an AJAX request, make this a request in order to
   // at least have a GET implemented
-  const roomsFromSessionStorage = sessionStorage.getItem("rooms");
+  const roomsFromSessionStorage = localStorage.getItem("rooms");
   const lsRoomsObj = JSON.parse(roomsFromSessionStorage);
   const roomObj = lsRoomsObj[roomNumber];
   return roomObj.name;
@@ -123,7 +123,7 @@ $(document).ready(function () {
     room: sessionStorage.getItem("connectedRoom"),
   };
 
-  const roomsObj = JSON.parse(sessionStorage.getItem("rooms"));
+  const roomsObj = JSON.parse(localStorage.getItem("rooms"));
 
   printUsers();
 
@@ -148,7 +148,7 @@ $(document).ready(function () {
       const rooms = await result.json();
 
       // eslint-disable-next-line no-undef
-      sessionStorage.setItem("rooms", JSON.stringify(rooms));
+      localStorage.setItem("rooms", JSON.stringify(rooms));
 
       cleanUsers();
       printUsers();

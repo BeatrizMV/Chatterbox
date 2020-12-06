@@ -86,6 +86,33 @@ const printUsers = () => {
   usernames.appendChild(node);
 };
 
+function printBlockedUsers(isAdmin) {
+  if (isAdmin) {
+    const blockedUserBoxElem = document.getElementById("blocked-userbox");
+    blockedUserBoxElem.classList.remove("d-none");
+
+    const rooms = JSON.parse(localStorage.getItem("rooms"));
+    const actualRoom = sessionStorage.getItem("connectedRoom");
+
+    const usernames = document.getElementById("blocked-usernames");
+    const node = document.createElement("UL");
+    node.className = "blocked-user-list";
+
+    if (rooms[actualRoom]) {
+      rooms[actualRoom].blockedUsers.forEach((user) => {
+        const userElement = document.createElement("LI");
+        const textNode = document.createElement("P");
+        const text = document.createTextNode(user);
+        textNode.className = "card_text";
+        textNode.appendChild(text);
+        userElement.appendChild(textNode);
+        node.appendChild(userElement);
+      });
+      usernames.appendChild(node);
+    }
+  }
+}
+
 function getRoomNameFromSessionStorage() {
   const roomNumber = sessionStorage.getItem("connectedRoom");
   return getRoomName(roomNumber);
@@ -114,7 +141,9 @@ function setAdminPillVisibility(currentRoomObj, userEmail) {
   const { roomCreator } = currentRoomObj;
   if (roomCreator === userEmail) {
     pillDomObj.classList.remove("d-none");
+    return true;
   }
+  return false;
 }
 
 $(document).ready(function () {
@@ -129,7 +158,8 @@ $(document).ready(function () {
 
   const roomName = replaceRoomName(data.room);
 
-  setAdminPillVisibility(roomsObj[data.room], data.user);
+  const isAdmin = setAdminPillVisibility(roomsObj[data.room], data.user);
+  printBlockedUsers(isAdmin);
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {

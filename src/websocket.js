@@ -37,5 +37,10 @@ module.exports = function () {
         socket.to(roomName).emit("message", socket.id, message);
       }
     });
+
+    socket.on("blocked-user", (message) => {
+      const { roomName } = message;
+      socket.to(roomName).emit("blocked-user", socket.id, message);
+    });
   });
 };

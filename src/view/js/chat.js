@@ -211,6 +211,15 @@ async function addSelectedToBlocked() {
 
       // this function is only reached when admin, so pass a true
       printBlockedUsers(true);
+
+      // emit a user blocked event through websockets, so if the user
+      // is at the room it they get kicked out
+      socket.emit("blocked-user", {
+        user: selectedUserFromStorage,
+        roomName: roomName,
+      });
+    } else {
+      console.log("Failed to block user " + selectedUserFromStorage);
     }
   } else {
     console.log("No user retrieved from the storage");
@@ -258,5 +267,22 @@ $(document).ready(function () {
 
   socket.on("message", function (socket, message) {
     addMessageToScreen(message, false);
+  });
+
+  socket.on("blocked-user", function (socket, message) {
+    // do this here to avoid the variable name clash
+    // eslint-disable-next-line no-use-before-define
+    // const {user, roomName} = message;
+    const user = message.user;
+    const rName = message.roomName;
+    console.log("Received blocked user request for user " + message);
+    if (user === data.user && roomName === rName) {
+      console.log("Current user has been blocked. Redirecting to rooms screen");
+      navigateToRooms();
+    } else {
+      console.log(
+        "The user blocked is different from the current one. No changes"
+      );
+    }
   });
 });

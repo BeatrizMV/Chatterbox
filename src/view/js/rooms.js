@@ -125,6 +125,27 @@ const saveUserInRoom = async (id, email) => {
   }
 };
 
+const isUserAllowedInRoom = async (id, email) => {
+  const url = new URL("http://localhost:3000/is-user-allowed");
+  url.searchParams.append("id", id);
+  url.searchParams.append("email", email);
+  const result = await fetch(url);
+
+  if (result.status === 200) {
+    return true;
+  }
+
+  if (result.status === 403) {
+    console.log("The user is not allowed to log into the room");
+    return false;
+  }
+
+  if (result.status === 404) {
+    console.log("There was an error in the request. No room with id " + id);
+    return false;
+  }
+};
+
 const redirectToRoom = async (roomId) => {
   // Hacer esto cuando estemos en chat.html para poder pintar los datos?
   const url = new URL(`${baseURL}room/${roomId}`);
@@ -138,4 +159,8 @@ const redirectToRoom = async (roomId) => {
   }
 };
 
-export default { saveUserInRoom, redirectToRoom };
+export default {
+  saveUserInRoom,
+  redirectToRoom,
+  isUserAllowedInRoom,
+};

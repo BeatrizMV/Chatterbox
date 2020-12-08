@@ -1,5 +1,6 @@
 const rooms = require("../models/roomModel");
 const userHelper = require("../helpers/userHelper");
+const config = require("../config");
 
 const getRooms = async (_, res) => {
   res.statusCode = 200;
@@ -77,10 +78,32 @@ const blockUser = async (req, res) => {
   res.json(roomObj);
 };
 
+const isUserAllowed = (req, res) => {
+  // const { roomId, email } = req.body;
+  const reqURL = new URL(`http://${config.hostname}${req.url}`);
+
+  const roomId = reqURL.searchParams.get("id");
+  const email = reqURL.searchParams.get("email");
+
+  if (roomId < rooms.length && rooms[roomId]) {
+    if (rooms[roomId].blockedUsers.includes(email)) {
+      res.statusCode = 403;
+      res.end("The user is in the blacklist");
+    } else {
+      res.statusCode = 200;
+      res.end("User allowed in the room");
+    }
+  } else {
+    res.statusCode = 404;
+    res.end("No room with that id");
+  }
+};
+
 module.exports = {
   getRooms,
   getRoom,
   createRoom,
   addUserToRoom,
   blockUser,
+  isUserAllowed,
 };

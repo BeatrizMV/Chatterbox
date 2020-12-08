@@ -1,7 +1,18 @@
 import webStorage from "./webstorage.js";
 import roomsHandler from "./rooms.js";
 
-function drop(ev) {
+function getSelectedRoomId(roomName) {
+  const rooms = webStorage.getRooms();
+  for (let i = 0; i < rooms.length; i++) {
+    const r = rooms[i];
+    if (r.name === roomName) {
+      return i;
+    }
+  }
+  return null;
+}
+
+async function drop(ev) {
   ev.preventDefault();
 
   const MAX_AMOUNT_OF_USERS = 5;
@@ -12,18 +23,25 @@ function drop(ev) {
 
   const data = ev.dataTransfer.getData("text");
 
-  const updatedRooms = rooms.map((room, index) => {
-    if (room.name === roomDropped)
-      if (room.users.length < MAX_AMOUNT_OF_USERS) {
-        room.users.push(data);
-        ev.target.appendChild(document.getElementById(data));
-        roomsHandler.saveUserInRoom(index, data);
-        roomsHandler.redirectToRoom(index);
-      } else alert("Hay demasiados usuarios en la sala");
-    return room;
-  });
+  const roomId = getSelectedRoomId(roomDropped);
+  const isUserAllowed = await roomsHandler.isUserAllowedInRoom(roomId, data);
 
-  webStorage.saveRooms(updatedRooms);
+  if (isUserAllowed) {
+    const updatedRooms = rooms.map((room, index) => {
+      if (room.name === roomDropped)
+        if (room.users.length < MAX_AMOUNT_OF_USERS) {
+          room.users.push(data);
+          ev.target.appendChild(document.getElementById(data));
+          roomsHandler.saveUserInRoom(index, data);
+          roomsHandler.redirectToRoom(index);
+        } else alert("Hay demasiados usuarios en la sala");
+      return room;
+    });
+
+    webStorage.saveRooms(updatedRooms);
+  } else {
+    alert("Este usuario no tiene permitido entrar en la sala");
+  }
 }
 
 function allowDrop(ev) {

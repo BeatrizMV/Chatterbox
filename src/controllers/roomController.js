@@ -74,6 +74,9 @@ const blockUser = async (req, res) => {
     }
   }
   roomObj.blockedUsers.push(email);
+  roomObj.users = roomObj.users.filter((elem) => {
+    return elem !== email;
+  });
   res.statusCode = 201;
   res.json(roomObj);
 };

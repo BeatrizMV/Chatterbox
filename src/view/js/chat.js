@@ -75,6 +75,11 @@ const printUsers = () => {
   const node = document.createElement("UL");
   node.className = "user-list";
 
+  // delete the children, so there are no duplicated elements
+  if (usernames.firstElementChild) {
+    usernames.removeChild(usernames.firstElementChild);
+  }
+
   rooms[actualRoom].users.forEach((user) => {
     const userElement = document.createElement("LI");
     const textNode = document.createElement("P");
@@ -211,6 +216,8 @@ async function addSelectedToBlocked() {
 
       // this function is only reached when admin, so pass a true
       printBlockedUsers(true);
+      // the list of users needs to be updated too
+      printUsers();
 
       // emit a user blocked event through websockets, so if the user
       // is at the room it they get kicked out
@@ -270,7 +277,6 @@ $(document).ready(function () {
   });
 
   socket.on("blocked-user", function (socket, message) {
-    // do this here to avoid the variable name clash
     // eslint-disable-next-line no-use-before-define
     // const {user, roomName} = message;
     const user = message.user;

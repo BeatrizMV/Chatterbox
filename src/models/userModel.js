@@ -4,3 +4,36 @@ const users = [
 ];
 
 module.exports = users;
+
+/*
+  
+  
+const mongoose = require('mongoose');
+const { Schema } = mongoose;
+
+const users = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true
+    },
+    password: {
+      type: String,
+      required: true,
+      unique: true,
+    }
+  }
+)
+
+
+module.exports = mongoose.model('User', users);
+
+*/

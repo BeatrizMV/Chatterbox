@@ -16,14 +16,14 @@ const rooms = new Schema(
     },
     name: {
       type: String,
-      unique: true,
+      default: "Main room"
     },
     messages: {
       type: String
     },
     blockedUsers: {
       type: String,
-      unique: true,
+      unique: true
     }
 
   }

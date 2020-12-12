@@ -57,25 +57,31 @@ function addMessageToScreen(message, isMine) {
   // creamos el list item para el mensaje
   const listItem = document.createElement("LI");
   const textNode = document.createElement("P");
-  const textNode2 = document.createElement("P");
+  const textNode2 = document.createElement("DIV");
   const text = document.createTextNode(message.message);
   const user = document.createTextNode(message.user);
   if (isMine) {
     listItem.className = "message_sent--mine";
     user.className = "user-chat--mine";
+    textNode2.className = "message_sent_user_name--mine";
+    textNode.className = "message_sent_inner--mine";
 
     textNode.appendChild(text);
-    textNode2.appendChild(user);
-    listItem.appendChild(textNode);
+    // textNode2.appendChild(user);
+    textNode2.appendChild(textNode);
+    // listItem.appendChild(textNode);
     listItem.appendChild(textNode2);
   } else {
     listItem.className = "message_sent";
     user.className = "user-chat";
+    textNode2.className = "message_sent_user_name";
+    textNode.className = "message_sent_inner";
 
     textNode.appendChild(text);
     textNode2.appendChild(user);
+    textNode2.appendChild(textNode);
+    // listItem.appendChild(textNode);
     listItem.appendChild(textNode2);
-    listItem.appendChild(textNode);
   }
 
   messages.appendChild(listItem);

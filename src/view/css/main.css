@@ -395,7 +395,7 @@ input[type="checkbox"]:checked + label::before,
 .message_sent {
   color: #48af4c;
   list-style: none;
-  border: 3px solid #48af4c;
+  /*border: 3px solid #48af4c;*/
   border-radius: 5px;
   padding: 0.5rem;
   margin-top: 1rem;
@@ -438,4 +438,32 @@ p {
   font-family: "Varela", sans-serif;
   border-radius: 10px;
   border-color: #fff;
+}
+
+.message_sent_user_name--mine {
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.message_sent_inner--mine {
+  font-size: 1rem;
+}
+
+.message_sent_user_name {
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.message_sent_inner {
+  font-size: 1rem;
+  border: 3px solid #48af4c;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.2rem;
 }

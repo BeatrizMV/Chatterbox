@@ -6,8 +6,12 @@ form &&
   });
 
 const saveUser = (name, email) => {
-  localStorage.setItem("name", name);
-  localStorage.setItem("email", email);
+  sessionStorage.setItem("name", name);
+  sessionStorage.setItem("email", email);
+};
+
+const connectedRoom = (roomId) => {
+  sessionStorage.setItem("connectedRoom", roomId);
 };
 
 const registerUser = () => {
@@ -29,7 +33,7 @@ const registerUser = () => {
         .replace("data:", "")
         .replace(/^.+,/, "");
       // store file
-      localStorage.setItem("avatar", base64String);
+      sessionStorage.setItem("avatar", base64String);
     };
     reader.readAsDataURL(file);
   }
@@ -43,8 +47,21 @@ const getRooms = () => {
   return JSON.parse(localStorage.getItem("rooms"));
 };
 
+const saveRoom = (data, roomCreator) => {
+  const rooms = getRooms();
+  const objToSave = {
+    users: [],
+    name: data,
+    messages: [],
+    blockedUsers: [],
+    roomCreator: roomCreator,
+  };
+  rooms.push(objToSave);
+  saveRooms(rooms);
+};
+
 const getUser = () => {
-  return localStorage.getItem("email");
+  return sessionStorage.getItem("email");
 };
 
 export default {
@@ -53,4 +70,6 @@ export default {
   saveRooms,
   getRooms,
   getUser,
+  connectedRoom,
+  saveRoom,
 };

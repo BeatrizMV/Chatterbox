@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- BOOTSTRAP -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/cosmo/bootstrap.min.css"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/main.css" />
+    <!-- JQUERY -->
+    <!-- FONT AWESOME -->
+
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"
+      integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.3/socket.io.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela&display=swap"
+      rel="stylesheet"
+    />
+    <title>ChatterBox</title>
+  </head>
+
+  <body id="body" class="login chatroom">
+    <div class="container-fluid">
+      <!-- NAVBAR -->
+      <nav class="">
+        <a class="" style="color: black; font-size: 25px" href="/"
+          ><i class="fa fa-home" aria-hidden="true"></i>
+          CHATTERBOX
+        </a>
+      </nav>
+      <div id="chatwrap">
+        <div class="row">
+          <!-- USERS SECTION-->
+          <!-- LIST OF USERS IN THE ROOM -->
+          <div class="usersclass col-md-4">
+            <div id="userbox" class="card">
+              <div class="card-header bg-dark text-white">
+                <h3>Users</h3>
+                <button id="block-user-btn"
+                        class="btn btn-danger block-btn disabled d-none"
+                        onclick="addSelectedToBlocked()">Block</button>
+              </div>
+              <div class="card-body">
+                <div id="usernames"></div>
+              </div>
+            </div>
+            <div id="blocked-userbox" class="card d-none">
+              <div class="card-header bg-dark text-white">
+                <h3>Blocked Users</h3>
+              </div>
+              <div class="card-body">
+                <div id="blocked-usernames"></div>
+              </div>
+            </div>
+          </div>
+          <!-- CHAT SECTION-->
+          <div id="roombox" class="col-md-5">
+            <div class="card">
+              <!-- CARD HEADER-->
+              <div class="card-header bg-dark text-white">
+                <h2 id="room-name">"Room name"</h2>
+                <h2 id="btnsalas" href="" class="btn" onclick="navigateToRooms()">List of rooms</h2>
+                <h2 id="admin-pill" class="badge badge-pill badge-warning d-none">Room Admin</h2>
+              </div>
+              <!-- CARD BODY-->
+              <div id="chat" class="card-body message_container">
+                <ul id="messages-list" class="message-list"></ul>
+              </div>
+              <!-- CARD FOOTER -->
+              <form
+                id="message-form"
+                class="card-footer"
+                onsubmit="submitMessage(); return false"
+              >
+                <div class="input-group">
+                  <input
+                    type="text"
+                    id="message"
+                    class="form-control"
+                    autocomplete="off"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn" type="button" onclick="sendMessage()">
+                      <i class="fas fa-location-arrow"></i> Send
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+              <div class="collapseWrapper">
+                <p>
+                  <a
+                    class="btn btn-link btnPaint"
+                    data-toggle="collapse"
+                    href="#collapseExample"
+                    role="button"
+                    aria-expanded="false"
+                    aria-controls="collapseExample"
+                  >
+                    <span style="font-family: cursive"
+                      ><i class="fas fa-pencil-alt"></i> Have fun!</span
+                    >
+                  </a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                  <button
+                    id="clear"
+                    class="btn btn-secondary"
+                    onclick="eraseCanvas()"
+                  >
+                    <i class="fas fa-eraser"></i> Clear
+                  </button>
+                  <div id="drawingcontainer">
+                    <canvas
+                      class="myCanvas"
+                      width="300"
+                      height="300"
+                      id="drawing"
+                    >
+                    </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/canvas.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="./js/chat.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

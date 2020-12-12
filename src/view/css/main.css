@@ -1,0 +1,489 @@
+@import url("https://fonts.googleapis.com/css?family=Varela");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+/* GLOBAL */
+
+@media (max-width: 650px) {
+  h5,
+  h3,
+  h2,
+  p {
+    font-size: 20px;
+  }
+}
+
+.login {
+}
+
+html {
+  height: 100%;
+}
+
+#body {
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/07/26/yada-yada-1432921_960_720.jpg");
+}
+
+#logintitle {
+  color: rgba(255, 255, 255, 0.822);
+  font-size: 30px;
+  font-family: "Pacifico";
+}
+
+body {
+  font-family: "Varela", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgb(255, 255, 255);
+  min-height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-size: cover;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+a {
+  color: #e1e1e1;
+}
+
+a:focus,
+a:hover {
+  color: #fbfbfb;
+}
+
+.checkbox-inline + .checkbox-inline,
+.radio-inline + .radio-inline {
+  margin-top: 6px;
+}
+
+#chatwrap {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* INDEX */
+
+.relative {
+  position: relative;
+}
+
+.switcher {
+  margin-bottom: 70px;
+}
+
+ul.switcher li {
+  list-style-type: none;
+  width: 50%;
+  position: absolute;
+  top: 0;
+}
+
+.first {
+  left: 0;
+}
+
+.second {
+  right: 0;
+}
+
+.login-container-wrapper {
+  max-width: 400px;
+  margin: 2% auto 5%;
+  padding: 40px;
+  box-sizing: border-box;
+  background: rgba(88, 88, 88, 0.8);
+  position: relative;
+  box-shadow: 0px 30px 60px -5px #000;
+  background-image: url("https://cdn.pixabay.com/photo/2016/06/03/07/26/yada-yada-1432921_960_720.jpg");
+  background-size: cover;
+  background-blend-mode: saturation;
+}
+
+.login-container-wrapper .logo,
+.login-container-wrapper .welcome {
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+.login-container-wrapper li {
+  text-align: center;
+  padding: 0 15px;
+  background-color: #91a0b1;
+  height: 50px;
+  line-height: 50px;
+  box-shadow: inset 0 -2px 0 0 #ccc;
+  cursor: pointer;
+}
+
+.login-container-wrapper li a {
+  color: #fff;
+}
+
+.login-container-wrapper li a:hover {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.login-container-wrapper li a:active,
+.login-container-wrapper li a:focus {
+  color: #fff;
+  text-decoration: none;
+}
+
+.login-container-wrapper li.active {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.login-container-wrapper li.active a {
+  border-bottom: 2px solid #fff;
+  padding-bottom: 5px;
+}
+
+.login input:focus + .fa {
+  color: #25a08d;
+}
+
+.login-form .form-group {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.login-form i {
+  position: absolute;
+  top: 0;
+  left: 19px;
+  line-height: 52px;
+  color: rgba(40, 52, 67, 1);
+  z-index: 100;
+  font-size: 16px;
+}
+
+.login-form .input-lg {
+  font-size: 16px;
+  height: 52px;
+  padding: 10px 25px;
+  border-radius: 0;
+}
+
+.login input[type="email"],
+.login input[type="password"],
+.login input[type="text"],
+.login input:focus {
+  background-color: rgba(40, 52, 67, 0.75);
+  border: 0px solid #4a525f;
+  color: #eee;
+  border-left: 45px solid #93a5ab;
+  border-radius: 40px;
+}
+
+.login input:focus {
+  border-left: 45px solid #eee;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  background-color: rgba(40, 52, 67, 0.75) !important;
+  background-image: none;
+  color: rgb(0, 0, 0);
+  border-color: #faffbd;
+}
+
+.login .checkbox label,
+.login .checkbox a {
+  color: #ddd;
+  vertical-align: top;
+}
+
+input[type="checkbox"]:checked + label::before,
+.checkbox-success input[type="radio"]:checked + label::before {
+  background-color: #25a08d !important;
+}
+
+.btn-success {
+  background-color: #25a08d;
+  background-image: none;
+  padding: 8px 50px;
+  margin-top: 20px;
+  border-radius: 40px;
+  border: 1px solid #25a08d;
+  -webkit-transition: all ease 0.8s;
+  -moz-transition: all ease 0.8s;
+  transition: all ease 0.8s;
+}
+
+.btn-success:focus,
+.btn-success:hover,
+.btn-success.active,
+.btn-success.active:hover,
+.btn-success:active:hover,
+.btn-success:active:focus,
+.btn-success:active {
+  background-color: #25a08d;
+  border-color: #25a08d;
+  box-shadow: 0px 5px 35px -5px #25a08d;
+  text-shadow: 0 0 8px #fff;
+  color: #fff;
+  outline: none;
+}
+
+.text-whitesmoke {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 15%;
+  border-radius: 55px;
+  color: #ddd !important;
+}
+
+#logintitle {
+  color: #ddd !important;
+}
+
+/* CHAT */
+
+.usersclass {
+  margin-left: 8%;
+  margin-top: 2%;
+}
+
+#btnsalas {
+  color: #fff;
+  font-family: "Varela", sans-serif;
+  border-radius: 10px;
+  border-color: #fff;
+}
+
+#userbox {
+  width: 60%;
+}
+
+#roombox {
+  padding-left: -50px;
+}
+
+/* ROOMS */
+
+#chatlist-users {
+  margin-top: 1%;
+}
+
+.card {
+  width: 100%;
+  margin-top: 10%;
+  margin-left: 20%;
+  background-color: #fff;
+}
+
+.rooms {
+  width: 100%;
+  margin-left: 20%;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.card_text {
+  color: black;
+  margin-bottom: 0;
+  padding: 1em;
+}
+
+.card-text--selected {
+  background-color: #c7cdd0;
+}
+
+.flexheader {
+  display: flex;
+  align-content: space-between;
+}
+
+#creabuscawrap {
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: space-between;
+}
+
+#buscasala {
+  margin-top: 20px;
+}
+
+#crea-sala,
+#localstorageSalas {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#room-finder {
+  width: fit-content;
+  width: 700px;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #25a08d;
+  border-color: #25a08d;
+}
+
+.lists-D-and-D {
+  display: flex;
+}
+
+/* zona para elegir el avatar */
+
+.drop-zone {
+  max-width: 200px;
+  height: 200px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Varela", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  cursor: pointer;
+  color: #fff;
+  border: 4px dashed #00957b;
+  border-radius: 10px;
+}
+
+.drop-zone__over {
+  border-style: solid;
+  border-color: white;
+}
+
+.drop-zone__input {
+  display: none;
+}
+
+.drop-zone__thumb {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #00957b;
+  background-size: cover;
+  position: relative;
+}
+
+.drop-zone__thumb::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.75);
+  font-size: 11px;
+  text-align: center;
+}
+
+.message_sent,
+.message_sent--mine {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.message_sent {
+  color: #48af4c;
+  list-style: none;
+  /*border: 3px solid #48af4c;*/
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  /*background-color: #d5dbdd;*/
+  margin-right: 3rem;
+}
+
+.message_sent--mine {
+  color: #32879c;
+  list-style: none;
+  border: 3px solid #32879c;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  /*background-color: red; */
+  margin-left: 3rem;
+}
+
+.message-list {
+  padding: 0;
+}
+
+.message_container {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
+p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.user-list {
+  padding: 0;
+}
+
+.block-btn {
+  color: #fff;
+  font-family: "Varela", sans-serif;
+  border-radius: 10px;
+  border-color: #fff;
+}
+
+.message_sent_user_name--mine {
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.message_sent_inner--mine {
+  font-size: 1rem;
+}
+
+.message_sent_user_name {
+  font-size: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  color: #48af4c;
+}
+
+.message_sent_inner {
+  font-size: 1rem;
+  border: 3px solid #48af4c;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.2rem;
+}
+
+.canvas-message_img {
+  border: 3px solid #48af4c;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+.canvas-message_img--mine {
+  border: 3px solid #32879c;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+#drawingcontainer {
+  display: flex;
+  justify-content: center;
+}

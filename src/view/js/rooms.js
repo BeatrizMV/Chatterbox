@@ -35,13 +35,14 @@ const getUsers = async () => {
     const actualUser = webStorage.getUser();
 
     users.forEach((user) => {
-      if (user !== actualUser) appendUser(user);
+      if (user.email === actualUser) appendUser(user.email);
     });
   }
 };
 
 const newRoom = async () => {
   const name = document.getElementById("buscasala").value;
+  const roomCreator = sessionStorage.getItem("email");
 
   if (name) {
     const url = new URL(`${baseURL}room`);
@@ -59,7 +60,7 @@ const newRoom = async () => {
 
     if (result.status === 201) {
       const room = await result.json();
-      webStorage.saveRoom(name);
+      webStorage.saveRoom(name, roomCreator);
       appendRoom(room);
     }
   } else {
@@ -115,7 +116,7 @@ const saveUserInRoom = async (id, email) => {
     },
     body: JSON.stringify({
       roomId: id,
-      email,
+      email: email,
     }),
   });
 
@@ -124,4 +125,42 @@ const saveUserInRoom = async (id, email) => {
   }
 };
 
-export default { saveUserInRoom };
+const isUserAllowedInRoom = async (id, email) => {
+  const url = new URL("http://localhost:3000/is-user-allowed");
+  url.searchParams.append("id", id);
+  url.searchParams.append("email", email);
+  const result = await fetch(url);
+
+  if (result.status === 200) {
+    return true;
+  }
+
+  if (result.status === 403) {
+    console.log("The user is not allowed to log into the room");
+    return false;
+  }
+
+  if (result.status === 404) {
+    console.log("There was an error in the request. No room with id " + id);
+    return false;
+  }
+};
+
+const redirectToRoom = async (roomId) => {
+  // Hacer esto cuando estemos en chat.html para poder pintar los datos?
+  const url = new URL(`${baseURL}room/${roomId}`);
+
+  const result = await fetch(url);
+
+  webStorage.connectedRoom(roomId);
+
+  if (result.status === 200) {
+    window.location.replace("/chat.html");
+  }
+};
+
+export default {
+  saveUserInRoom,
+  redirectToRoom,
+  isUserAllowedInRoom,
+};

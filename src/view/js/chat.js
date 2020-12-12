@@ -98,23 +98,29 @@ function addCanvasMessageToScreen(message, isMine) {
   // creamos el list item para el mensaje
   const listItem = document.createElement("LI");
   const imgNode = document.createElement("IMG");
-  const textNode2 = document.createElement("P");
-  // const user = document.createTextNode(message.user);
+  const textNode2 = document.createElement("DIV");
+  const user = document.createTextNode(message.user);
   imgNode.setAttribute("src", message.message);
   if (isMine) {
-    listItem.className = "message_sent--mine";
+    listItem.className = "canvas-message_sent--mine";
     // user.className = "user-chat--mine";
+    textNode2.className = "message_sent_user_name";
+    imgNode.className = "canvas-message_img--mine";
 
     // textNode2.appendChild(user);
-    listItem.appendChild(imgNode);
+    textNode2.appendChild(imgNode);
+    // listItem.appendChild(imgNode);
     listItem.appendChild(textNode2);
   } else {
-    listItem.className = "message_sent";
+    listItem.className = "canvas-message_sent";
     // user.className = "user-chat";
+    textNode2.className = "message_sent_user_name";
+    imgNode.className = "canvas-message_img";
 
-    // textNode2.appendChild(user);
+    textNode2.appendChild(user);
+    textNode2.appendChild(imgNode);
+    // listItem.appendChild(textNode2);
     listItem.appendChild(textNode2);
-    listItem.appendChild(imgNode);
   }
 
   messages.appendChild(listItem);

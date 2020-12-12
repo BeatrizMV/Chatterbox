@@ -398,7 +398,7 @@ input[type="checkbox"]:checked + label::before,
   /*border: 3px solid #48af4c;*/
   border-radius: 5px;
   padding: 0.5rem;
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   /*background-color: #d5dbdd;*/
   margin-right: 3rem;
 }
@@ -406,10 +406,10 @@ input[type="checkbox"]:checked + label::before,
 .message_sent--mine {
   color: #32879c;
   list-style: none;
-  border: 3px solid #32879c;
-  border-radius: 5px;
+  /*border: 3px solid #32879c;*/
+  /*border-radius: 5px;*/
   padding: 0.5rem;
-  margin-top: 1rem;
+  /*margin-top: 1rem;*/
   /*background-color: red; */
   margin-left: 3rem;
 }
@@ -450,6 +450,11 @@ p {
 
 .message_sent_inner--mine {
   font-size: 1rem;
+  border: 3px solid #32879c;
+  color: #32879c;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-top: 0.2rem;
 }
 
 .message_sent_user_name {

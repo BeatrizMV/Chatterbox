@@ -38,6 +38,17 @@ module.exports = function () {
       }
     });
 
+    socket.on("canvas-image", (message) => {
+      // Mandamos el mensaje a todos los usuarios a la escucha
+      // socket.broadcast.emit("message", message);
+      const { roomName } = message;
+      if (roomName) {
+        console.log("Sending message to room: " + roomName);
+        console.log("Message content: " + JSON.stringify(message));
+        socket.to(roomName).emit("canvas-image", socket.id, message);
+      }
+    });
+
     socket.on("blocked-user", (message) => {
       const { roomName } = message;
       socket.to(roomName).emit("blocked-user", socket.id, message);

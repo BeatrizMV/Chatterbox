@@ -58,3 +58,16 @@ function eraseCanvas() {
   const context = canvasMouse.getContext("2d");
   context.clearRect(0, 0, canvasMouse.width, canvasMouse.height);
 }
+
+// returns true if every pixel's uint32 representation is 0 (or "blank")
+// eslint-disable-next-line no-unused-vars
+function isCanvasBlank() {
+  const canvas = document.getElementById("drawing");
+  const context = canvas.getContext("2d");
+
+  const pixelBuffer = new Uint32Array(
+    context.getImageData(0, 0, canvas.width, canvas.height).data.buffer
+  );
+
+  return !pixelBuffer.some((color) => color !== 0);
+}

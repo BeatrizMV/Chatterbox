@@ -30,7 +30,9 @@ async function drop(ev) {
     const updatedRooms = rooms.map((room, index) => {
       if (room.name === roomDropped)
         if (room.users.length < MAX_AMOUNT_OF_USERS) {
-          room.users.push(data);
+          if (!room.users.includes(data)) {
+            room.users.push(data);
+          }
           ev.target.appendChild(document.getElementById(data));
           roomsHandler.saveUserInRoom(index, data);
           roomsHandler.redirectToRoom(index);

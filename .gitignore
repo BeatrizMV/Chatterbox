@@ -103,3 +103,9 @@ dist
 # TernJS port file
 .tern-port
 src/.vscode/settings.json
+/.idea/.gitignore
+/.idea/Chatterbox.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

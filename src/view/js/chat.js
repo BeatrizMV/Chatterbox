@@ -4,15 +4,40 @@ let socket;
 function sendMessage(event) {
   // event.preventDefault();
   const roomName = getRoomNameFromSessionStorage();
+  let canvasData;
+  // eslint-disable-next-line no-undef
+  if (!isCanvasBlank()) {
+    canvasData = document.getElementById("drawing").toDataURL();
+  }
+  if (canvasData) {
+    sendCanvasMessage(canvasData, roomName);
+  } else {
+    const message = {
+      message: document.getElementById("message").value,
+      user: sessionStorage.getItem("email"),
+      roomName: roomName,
+    };
+    if (message.message) {
+      socket.emit("message", message);
+      document.getElementById("message").value = "";
+      addMessageToScreen(message, true);
+    }
+  }
+}
+
+function sendCanvasMessage(canvasData, roomName) {
   const message = {
-    message: document.getElementById("message").value,
+    message: canvasData,
     user: sessionStorage.getItem("email"),
     roomName: roomName,
   };
   if (message.message) {
-    socket.emit("message", message);
-    document.getElementById("message").value = "";
-    addMessageToScreen(message, true);
+    socket.emit("canvas-image", message);
+    // document.getElementById("message").value = "";
+    addCanvasMessageToScreen(message, true);
+    // from canvas.js
+    // eslint-disable-next-line no-undef
+    eraseCanvas();
   }
 }
 
@@ -32,25 +57,70 @@ function addMessageToScreen(message, isMine) {
   // creamos el list item para el mensaje
   const listItem = document.createElement("LI");
   const textNode = document.createElement("P");
-  const textNode2 = document.createElement("P");
+  const textNode2 = document.createElement("DIV");
   const text = document.createTextNode(message.message);
   const user = document.createTextNode(message.user);
   if (isMine) {
     listItem.className = "message_sent--mine";
     user.className = "user-chat--mine";
+    textNode2.className = "message_sent_user_name--mine";
+    textNode.className = "message_sent_inner--mine";
 
     textNode.appendChild(text);
-    textNode2.appendChild(user);
-    listItem.appendChild(textNode);
+    // textNode2.appendChild(user);
+    textNode2.appendChild(textNode);
+    // listItem.appendChild(textNode);
     listItem.appendChild(textNode2);
   } else {
     listItem.className = "message_sent";
     user.className = "user-chat";
+    textNode2.className = "message_sent_user_name";
+    textNode.className = "message_sent_inner";
 
     textNode.appendChild(text);
     textNode2.appendChild(user);
+    textNode2.appendChild(textNode);
+    // listItem.appendChild(textNode);
     listItem.appendChild(textNode2);
-    listItem.appendChild(textNode);
+  }
+
+  messages.appendChild(listItem);
+
+  // Scroll hasta abajo
+  const container = document.getElementById("chat");
+  container.scrollTop = container.scrollHeight;
+}
+
+function addCanvasMessageToScreen(message, isMine) {
+  console.log("Printing canvas message on screen");
+  // cogemos el contenedor de los mensajes
+  const messages = document.getElementById("messages-list");
+  // creamos el list item para el mensaje
+  const listItem = document.createElement("LI");
+  const imgNode = document.createElement("IMG");
+  const textNode2 = document.createElement("DIV");
+  const user = document.createTextNode(message.user);
+  imgNode.setAttribute("src", message.message);
+  if (isMine) {
+    listItem.className = "canvas-message_sent--mine";
+    // user.className = "user-chat--mine";
+    textNode2.className = "message_sent_user_name";
+    imgNode.className = "canvas-message_img--mine";
+
+    // textNode2.appendChild(user);
+    textNode2.appendChild(imgNode);
+    // listItem.appendChild(imgNode);
+    listItem.appendChild(textNode2);
+  } else {
+    listItem.className = "canvas-message_sent";
+    // user.className = "user-chat";
+    textNode2.className = "message_sent_user_name";
+    imgNode.className = "canvas-message_img";
+
+    textNode2.appendChild(user);
+    textNode2.appendChild(imgNode);
+    // listItem.appendChild(textNode2);
+    listItem.appendChild(textNode2);
   }
 
   messages.appendChild(listItem);
@@ -274,6 +344,11 @@ $(document).ready(function () {
 
   socket.on("message", function (socket, message) {
     addMessageToScreen(message, false);
+  });
+
+  socket.on("canvas-image", function (socket, message) {
+    console.log("Received canvas image");
+    addCanvasMessageToScreen(message, false);
   });
 
   socket.on("blocked-user", function (socket, message) {

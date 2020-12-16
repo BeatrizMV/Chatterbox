@@ -2,13 +2,14 @@ const { userModel } = require("../models/index");
 const config = require("../config");
 const userHelper = require("../helpers/userHelper");
 
-const checkLogin = (req, res) => {
+const checkLogin = async (req, res) => {
   const reqURL = new URL(`http://${config.hostname}${req.url}`);
 
   const email = reqURL.searchParams.get("email");
   const password = reqURL.searchParams.get("password");
 
-  const user = userHelper.getUserFromEmail(email);
+  // const user = await userHelper.getUserFromEmail(email);
+  const user = await userModel.findUserByEmail(email);
 
   if (user && user.password === password) {
     res.statusCode = 200;
@@ -19,10 +20,14 @@ const checkLogin = (req, res) => {
   }
 };
 
-const register = (req, res) => {
+const register = async (req, res) => {
   const { email, password, name } = req.body;
   const user = { email, password, name };
-  const isAdded = !userHelper.checkIfUserExists(email) && userModel.push(user);
+  // const isAdded = !userHelper.checkIfUserExists(email) && userModel.push(user);
+  const userExist = await userHelper.checkIfUserExists(email);
+  const userSaved = await userModel.saveUser(user);
+  // const isAdded = !userHelper.checkIfUserExists(email) && userModel.saveUser(user);
+  const isAdded = !userExist && !!userSaved;
   if (isAdded) {
     res.statusCode = 201;
     res.end("User added");
@@ -32,9 +37,10 @@ const register = (req, res) => {
   }
 };
 
-const getUsers = (_, res) => {
+const getUsers = async (_, res) => {
+  const allUsers = await userModel.getAllUsers();
   res.statusCode = 200;
-  res.end(JSON.stringify(userModel));
+  res.end(JSON.stringify(allUsers));
 };
 
 module.exports = { checkLogin, register, getUsers };

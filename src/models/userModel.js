@@ -1,39 +1,57 @@
-const users = [
-  { email: "bea@gmail.com", password: "1234", name: "Bea" },
-  { email: "eric@gmail.com", password: "1234", name: "Eric" },
-];
+// const users = [
+//   { email: "bea@gmail.com", password: "1234", name: "Bea" },
+//   { email: "eric@gmail.com", password: "1234", name: "Eric" },
+// ];
+//
+// module.exports = users;
 
-module.exports = users;
-
-/*
-  
-  
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const users = new Schema(
-  {
-    email: {
-      type: String,
-      required: true,
+const schema = new Schema({
+  email: String,
+  password: String,
+  name: String,
+});
+
+const User = mongoose.model("User", schema);
+
+const findUserByEmail = async (email) => {
+  return User.findOne(
+    {
+      email: email,
     },
-    password: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true,
-      unique: true,
+    (err, foundUser) => {
+      if (err) {
+        console.log(err);
+      } else {
+        return foundUser;
+      }
     }
-  }
-)
+  );
+};
 
+const getAllUsers = async () => {
+  return User.find({}, (err, foundUsers) => {
+    if (err) {
+      console.log(err);
+    } else {
+      return foundUsers;
+    }
+  });
+};
 
-module.exports = mongoose.model('User', users);
+const saveUser = async (userObj) => {
+  const userDocument = new User(userObj);
+  const savedUser = await userDocument.save();
+  console.log(`User saved: ${savedUser.email}`);
+  return savedUser;
+};
 
-*/
+module.exports = {
+  User,
+  schema,
+  findUserByEmail,
+  getAllUsers,
+  saveUser,
+};

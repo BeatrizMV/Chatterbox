@@ -1,18 +1,21 @@
-const rooms = require("../models/roomModel");
+const roomModel = require("../models/roomModel");
 const userHelper = require("../helpers/userHelper");
 const config = require("../config");
 
 const getRooms = async (_, res) => {
   res.statusCode = 200;
-  res.end(JSON.stringify(rooms));
+  const allRooms = await roomModel.getAllRooms();
+  res.end(JSON.stringify(allRooms));
 };
 
 const getRoom = async (req, res) => {
   const { roomId } = req.params;
 
-  if (rooms[roomId]) {
+  const allRooms = await roomModel.getAllRooms();
+
+  if (allRooms[roomId]) {
     res.statusCode = 200;
-    res.end(JSON.stringify(rooms[roomId]));
+    res.end(JSON.stringify(allRooms[roomId]));
   } else {
     res.statusCode = 404;
     res.end("The room doesn't exist");
@@ -33,11 +36,16 @@ const createRoom = async (req, res) => {
         res.end("Some of the users doesn't exists");
       }
     });
-
-  const roomId = rooms.push({ users: userIDs, name: name, blockedUsers: [] });
+  // const allRooms = roomModel.getAllRooms();
+  // const roomId = allRooms.push({ users: userIDs, name: name, blockedUsers: [] });
+  const savedRoom = roomModel.addNewRoom({
+    users: userIDs,
+    name: name,
+    blockedUsers: [],
+  });
 
   res.statusCode = 201;
-  res.end(JSON.stringify(rooms[roomId - 1]));
+  res.end(JSON.stringify(savedRoom));
 };
 
 const addUserToRoom = async (req, res) => {
@@ -48,7 +56,9 @@ const addUserToRoom = async (req, res) => {
     res.end("Request data is not complete");
   }
 
-  if (rooms[roomId]) {
+  const allRooms = await roomModel.getAllRooms();
+
+  if (allRooms[roomId]) {
     if (userHelper.getUserFromEmail(email)) {
       res.statusCode = 201;
       res.end("User added to the room");
@@ -65,8 +75,11 @@ const addUserToRoom = async (req, res) => {
 const blockUser = async (req, res) => {
   const { email, room } = req.body;
   console.log(`Blocking user ${email} at room ${room}`);
+
+  const allRooms = await roomModel.getAllRooms();
+
   let roomObj;
-  for (const rObj of rooms) {
+  for (const rObj of allRooms) {
     const { name } = rObj;
     if (name === room) {
       roomObj = rObj;
@@ -77,19 +90,24 @@ const blockUser = async (req, res) => {
   roomObj.users = roomObj.users.filter((elem) => {
     return elem !== email;
   });
+
+  await roomModel.updateRoom(roomObj);
+
   res.statusCode = 201;
   res.json(roomObj);
 };
 
-const isUserAllowed = (req, res) => {
+const isUserAllowed = async (req, res) => {
   // const { roomId, email } = req.body;
   const reqURL = new URL(`http://${config.hostname}${req.url}`);
 
   const roomId = reqURL.searchParams.get("id");
   const email = reqURL.searchParams.get("email");
 
-  if (roomId < rooms.length && rooms[roomId]) {
-    if (rooms[roomId].blockedUsers.includes(email)) {
+  const allRooms = await roomModel.getAllRooms();
+
+  if (roomId < allRooms.length && allRooms[roomId]) {
+    if (allRooms[roomId].blockedUsers.includes(email)) {
       res.statusCode = 403;
       res.end("The user is in the blacklist");
     } else {

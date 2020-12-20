@@ -69,24 +69,25 @@ const addNewRoom = async (nuRoom) => {
 
 const updateRoom = async (room) => {
   const { name } = room;
-  const roomFromDb = await Room.find({ name: name }, (err, foundRoom) => {
+  const roomFromDb = await Room.findOne({ name: name }, (err, foundRoom) => {
     if (err) {
       console.log(err);
     } else {
       return foundRoom;
     }
   });
-  roomFromDb.users = room.users;
-  roomFromDb.name = room.name;
-  roomFromDb.blockedUsers = room.blockedUsers;
-  roomFromDb.save((err, savedRoom) => {
-    if (err) {
+  if (roomFromDb) {
+    roomFromDb.users = room.users;
+    roomFromDb.name = room.name;
+    roomFromDb.blockedUsers = room.blockedUsers;
+    try {
+      await roomFromDb.save();
+    } catch (err) {
       console.log(err);
-    } else {
-      console.log("Room updated");
-      return savedRoom;
     }
-  });
+  } else {
+    console.log("No room found at 'updateRoom'");
+  }
 };
 
 const resetRooms = async () => {

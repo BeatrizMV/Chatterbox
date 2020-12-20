@@ -54,12 +54,23 @@ module.exports = function () {
     });
 
     socket.on("blocked-user", (message) => {
-      const { roomName } = message;
-      socket.to(roomName).emit("blocked-user", socket.id, message);
+      const { roomName, user } = message;
+      console.log(
+        `'blocked-user' event received. Blocking for: ${user} at ${roomName}`
+      );
+      // socket.to(roomName).emit("blocked-user", socket.id, message);
+      socket.broadcast.emit("blocked-user", socket.id, message);
     });
 
     socket.on("disconnect", () => {
       console.log(`User ${socket.userName} disconnected`);
+    });
+
+    socket.on("client-exit", (message) => {
+      const { roomName } = message;
+      // socket.to(roomName).emit("blocked-user", socket.id, roomName);
+      console.log(`'client-exit' event received for room: ${roomName}`);
+      socket.broadcast.emit("client-exit", socket.id, roomName);
     });
   });
 };

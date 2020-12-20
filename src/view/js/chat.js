@@ -51,17 +51,21 @@ function submitMessage(event) {
 }
 
 async function disconnectUser() {
+  console.log(`Disconnecting user...`);
   const userEmail = webStorage.getUser();
   // const roomName = webStorage.getConnectedRoomName();
   // console.log(`User ${userEmail} disconnected from room ${roomName}`);
   // socket.emit("disconnect", {room: roomName, user: userEmail});
 
   // socket.disconnect()
+  const roomName = webStorage.getConnectedRoomName();
+  socket.emit("client-exit", { room: roomName, user: userEmail });
 
   await removeUserFromAllRooms(userEmail);
 }
 
 function navigateToRooms() {
+  console.log("Navigating to rooms screen");
   disconnectUser();
   window.location = "/rooms.html";
 }
@@ -148,11 +152,13 @@ function addCanvasMessageToScreen(message, isMine) {
 const baseURL = "http://localhost:3000/";
 
 const cleanUsers = () => {
+  console.log("Reseting the users block");
   const usernames = document.getElementById("usernames");
   usernames.removeChild(usernames.lastElementChild);
 };
 
 const printUsers = () => {
+  console.log("Printing the users block");
   // const rooms = JSON.parse(localStorage.getItem("rooms"));
   const rooms = webStorage.getRooms();
   const actualRoom = sessionStorage.getItem("connectedRoom");
@@ -265,6 +271,7 @@ function setAdminVisibilityElems(currentRoomObj, userEmail) {
 
 // eslint-disable-next-line no-undef,no-unused-vars
 async function addSelectedToBlocked() {
+  console.log("Adding selected user to blocked");
   const selectedUserFromStorage = sessionStorage.getItem(
     "selected-blocking-user"
   );
@@ -307,6 +314,7 @@ async function addSelectedToBlocked() {
 
       // emit a user blocked event through websockets, so if the user
       // is at the room it they get kicked out
+      console.log("Emitting the blocking websocket message");
       socket.emit("blocked-user", {
         user: selectedUserFromStorage,
         roomName: roomName,
@@ -368,10 +376,12 @@ $(document).ready(function () {
   });
 
   socket.on("connect", () => {
+    console.log(`'room' event sent with: ${roomName} and ${data.user}`);
     socket.emit("room", { room: roomName, user: data.user });
   });
 
   socket.on("newUserConnected", async () => {
+    console.log("'newUserConnected' event received. Refreshing the users list");
     const url = new URL(`${baseURL}rooms`);
     const result = await fetch(url);
 
@@ -387,6 +397,7 @@ $(document).ready(function () {
   });
 
   socket.on("message", function (socket, message) {
+    console.log("'message' event received");
     addMessageToScreen(message, false);
   });
 
@@ -398,21 +409,28 @@ $(document).ready(function () {
   socket.on("blocked-user", function (socket, message) {
     // eslint-disable-next-line no-use-before-define
     // const {user, roomName} = message;
-    const user = message.user;
-    const rName = message.roomName;
-    console.log("Received blocked user request for user " + message);
-    if (user === data.user && roomName === rName) {
-      console.log("Current user has been blocked. Redirecting to rooms screen");
-      navigateToRooms();
+    console.log("'blocked-user' event received");
+    if (message) {
+      const user = message.user;
+      const rName = message.roomName;
+      console.log("Received blocked user request for user " + message);
+      if (user === data.user && roomName === rName) {
+        console.log(
+          "Current user has been blocked. Redirecting to rooms screen"
+        );
+        navigateToRooms();
+      } else {
+        console.log(
+          "The user blocked is different from the current one. No changes"
+        );
+      }
     } else {
-      console.log(
-        "The user blocked is different from the current one. No changes"
-      );
+      console.log("blocked-user event received, but no message in it");
     }
   });
 
-  socket.on("disconnect", async (socket, message) => {
-    console.log(`Disconnect event received by the server`);
+  socket.on("client-exit", async (socket, message) => {
+    console.log(`client-exit event received`);
 
     const url = new URL(`${baseURL}rooms`);
     const result = await fetch(url);

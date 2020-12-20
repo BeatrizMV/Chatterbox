@@ -49,7 +49,7 @@
                 <h3>Users</h3>
                 <button id="block-user-btn"
                         class="btn btn-danger block-btn disabled d-none"
-                        onclick="addSelectedToBlocked()">Block</button>
+                        >Block</button>
               </div>
               <div class="card-body">
                 <div id="usernames"></div>
@@ -70,7 +70,7 @@
               <!-- CARD HEADER-->
               <div class="card-header bg-dark text-white">
                 <h2 id="room-name">"Room name"</h2>
-                <h2 id="btnsalas" href="" class="btn" onclick="navigateToRooms()">List of rooms</h2>
+                <h2 id="btnsalas" href="" class="btn" >List of rooms</h2>
                 <h2 id="admin-pill" class="badge badge-pill badge-warning d-none">Room Admin</h2>
               </div>
               <!-- CARD BODY-->
@@ -80,9 +80,8 @@
               <!-- CARD FOOTER -->
               <form
                 id="message-form"
-                class="card-footer"
-                onsubmit="submitMessage(); return false"
-              >
+                class="card-footer">
+<!--                onsubmit="submitMessage(); return false"-->
                 <div class="input-group">
                   <input
                     type="text"
@@ -91,7 +90,7 @@
                     autocomplete="off"
                   />
                   <div class="input-group-append">
-                    <button class="btn" type="button" onclick="sendMessage()">
+                    <button id="msg-btn" class="btn" type="button" >
                       <i class="fas fa-location-arrow"></i> Send
                     </button>
                   </div>
@@ -145,7 +144,8 @@
     ></script>
     <script src="js/canvas.js"></script>
     <!-- <script src="/socket.io/socket.io.js"></script> -->
-    <script src="./js/chat.js"></script>
+<!--    <script type="module" src="./js/rooms.js"></script>-->
+    <script type="module" src="./js/chat.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </body>
 </html>

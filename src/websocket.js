@@ -13,17 +13,21 @@ module.exports = function () {
 
   module.exports = io;
 
-  io.on("connection", (socket) => {
+  io.on("connection", async (socket) => {
     const { data } = socket.request._query;
 
     const { user, room } = JSON.parse(data);
 
-    addNewConnectedUser(user, room);
+    await addNewConnectedUser(user, room);
 
     socket.broadcast.emit("newUserConnected");
 
-    socket.on("room", function (room) {
-      console.log("room message received: " + room);
+    socket.on("room", function (data) {
+      const { user, room } = data;
+      console.log(`room message received for room ${room} and user ${user}`);
+      // Give a name to the socket for this user. We should identify the
+      // disconnections this way
+      socket.userName = user;
       socket.join(room);
     });
 
@@ -52,6 +56,10 @@ module.exports = function () {
     socket.on("blocked-user", (message) => {
       const { roomName } = message;
       socket.to(roomName).emit("blocked-user", socket.id, message);
+    });
+
+    socket.on("disconnect", () => {
+      console.log(`User ${socket.userName} disconnected`);
     });
   });
 };

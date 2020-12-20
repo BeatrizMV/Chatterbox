@@ -11,6 +11,7 @@ router.get("/room/:roomId", roomsController.getRoom);
 router.post("/room", roomsController.createRoom);
 router.post("/addUserToRoom", roomsController.addUserToRoom);
 router.post("/block-user", roomsController.blockUser);
+router.post("/removeUserFromAllRooms", roomsController.removeUserFromAllRooms);
 router.get("/is-user-allowed", roomsController.isUserAllowed);
 
 module.exports = router;

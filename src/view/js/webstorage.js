@@ -14,6 +14,15 @@ const connectedRoom = (roomId) => {
   sessionStorage.setItem("connectedRoom", roomId);
 };
 
+const getConnectedRoomName = () => {
+  const roomIdx = sessionStorage.getItem("connectedRoom");
+  const allRooms = JSON.parse(localStorage.getItem("rooms"));
+  if (allRooms && allRooms.length > 0) {
+    return allRooms[roomIdx].name;
+  }
+  return null;
+};
+
 const registerUser = () => {
   const getSignInName = document.querySelector("#signin_username");
   const getSignInEmail = document.querySelector("#signin_email");
@@ -72,4 +81,5 @@ export default {
   getUser,
   connectedRoom,
   saveRoom,
+  getConnectedRoomName,
 };

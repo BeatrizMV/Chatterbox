@@ -23,29 +23,38 @@ const getRoom = async (req, res) => {
 };
 
 const createRoom = async (req, res) => {
-  const { users, name } = req.body;
+  const {
+    // users,
+    name,
+  } = req.body;
 
-  const userIDs = [];
+  // const userIDs = [];
 
-  if (users)
-    users.forEach((user) => {
-      if (userHelper.getUserFromEmail(user)) {
-        userIDs.push(userHelper.getUserFromEmail(user));
-      } else {
-        res.statusCode = 404;
-        res.end("Some of the users doesn't exists");
-      }
-    });
+  // if (users)
+  //   users.forEach((user) => {
+  //     if (userHelper.getUserFromEmail(user)) {
+  //       userIDs.push(userHelper.getUserFromEmail(user));
+  //     } else {
+  //       res.statusCode = 404;
+  //       res.end("Some of the users doesn't exists");
+  //     }
+  //   });
   // const allRooms = roomModel.getAllRooms();
   // const roomId = allRooms.push({ users: userIDs, name: name, blockedUsers: [] });
-  const savedRoom = roomModel.addNewRoom({
-    users: userIDs,
+  const savedRoom = await roomModel.addNewRoom({
+    users: [],
     name: name,
     blockedUsers: [],
   });
 
-  res.statusCode = 201;
-  res.end(JSON.stringify(savedRoom));
+  if (savedRoom) {
+    res.statusCode = 201;
+    res.end(JSON.stringify(savedRoom));
+  } else {
+    console.log("The room was not saved to the db");
+    res.statusCode = 403;
+    // res.end(JSON.stringify(savedRoom));
+  }
 };
 
 const addUserToRoom = async (req, res) => {
@@ -58,10 +67,20 @@ const addUserToRoom = async (req, res) => {
 
   const allRooms = await roomModel.getAllRooms();
 
-  if (allRooms[roomId]) {
-    if (userHelper.getUserFromEmail(email)) {
-      res.statusCode = 201;
-      res.end("User added to the room");
+  const roomObj = allRooms[roomId];
+
+  if (roomObj) {
+    const userFromEmail = await userHelper.getUserFromEmail(email);
+    if (userFromEmail) {
+      // rooms[roomId].users.push(userHelper.getUserFromEmail(email));
+      const success = await roomModel.addUserEmailForRoom(roomObj, email);
+      if (success) {
+        res.statusCode = 201;
+        res.end("User added to the room");
+      } else {
+        res.statusCode = 403;
+        res.end("User already added or error adding the user to the room");
+      }
     } else {
       res.statusCode = 404;
       res.end("The user doesn't exists");
@@ -120,6 +139,12 @@ const isUserAllowed = async (req, res) => {
   }
 };
 
+const removeUserFromAllRooms = async (req, res) => {
+  const { email } = req.body;
+
+  await roomModel.removeUserFromAllRooms(email);
+};
+
 module.exports = {
   getRooms,
   getRoom,
@@ -127,4 +152,5 @@ module.exports = {
   addUserToRoom,
   blockUser,
   isUserAllowed,
+  removeUserFromAllRooms,
 };

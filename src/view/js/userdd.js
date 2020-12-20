@@ -1,5 +1,9 @@
 import webStorage from "./webstorage.js";
-import roomsHandler from "./rooms.js";
+import {
+  isUserAllowedInRoom,
+  redirectToRoom,
+  saveUserInRoom,
+} from "./roomsUtil.js";
 
 function getSelectedRoomId(roomName) {
   const rooms = webStorage.getRooms();
@@ -24,7 +28,7 @@ async function drop(ev) {
   const data = ev.dataTransfer.getData("text");
 
   const roomId = getSelectedRoomId(roomDropped);
-  const isUserAllowed = await roomsHandler.isUserAllowedInRoom(roomId, data);
+  const isUserAllowed = await isUserAllowedInRoom(roomId, data);
 
   if (isUserAllowed) {
     const updatedRooms = rooms.map((room, index) => {
@@ -34,8 +38,8 @@ async function drop(ev) {
             room.users.push(data);
           }
           ev.target.appendChild(document.getElementById(data));
-          roomsHandler.saveUserInRoom(index, data);
-          roomsHandler.redirectToRoom(index);
+          saveUserInRoom(index, data);
+          redirectToRoom(index);
         } else alert("Hay demasiados usuarios en la sala");
       return room;
     });

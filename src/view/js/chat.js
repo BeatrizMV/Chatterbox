@@ -1,4 +1,6 @@
-// import webStorage from "./webstorage";
+import webStorage from "./webstorage.js";
+import { getRooms, removeUserFromAllRooms } from "./roomsUtil.js";
+
 let socket;
 
 function sendMessage(event) {
@@ -43,11 +45,24 @@ function sendCanvasMessage(canvasData, roomName) {
 
 // eslint-disable-next-line no-unused-vars
 function submitMessage(event) {
+  event.preventDefault();
   sendMessage(event);
+  return false;
 }
 
-// eslint-disable-next-line no-unused-vars
+async function disconnectUser() {
+  const userEmail = webStorage.getUser();
+  // const roomName = webStorage.getConnectedRoomName();
+  // console.log(`User ${userEmail} disconnected from room ${roomName}`);
+  // socket.emit("disconnect", {room: roomName, user: userEmail});
+
+  // socket.disconnect()
+
+  await removeUserFromAllRooms(userEmail);
+}
+
 function navigateToRooms() {
+  disconnectUser();
   window.location = "/rooms.html";
 }
 
@@ -138,7 +153,8 @@ const cleanUsers = () => {
 };
 
 const printUsers = () => {
-  const rooms = JSON.parse(localStorage.getItem("rooms"));
+  // const rooms = JSON.parse(localStorage.getItem("rooms"));
+  const rooms = webStorage.getRooms();
   const actualRoom = sessionStorage.getItem("connectedRoom");
 
   const usernames = document.getElementById("usernames");
@@ -303,13 +319,38 @@ async function addSelectedToBlocked() {
   }
 }
 
+function addEventListeners() {
+  document
+    .getElementById("message-form")
+    .addEventListener("submit", (event) => {
+      submitMessage(event);
+    });
+  document.getElementById("msg-btn").addEventListener("click", () => {
+    sendMessage();
+    return false;
+  });
+  document.getElementById("btnsalas").addEventListener("click", () => {
+    navigateToRooms();
+  });
+  document.getElementById("block-user-btn").addEventListener("click", () => {
+    addSelectedToBlocked();
+  });
+  // document.getElementById("clear").addEventListener("click", () => {
+  //   eraseCanvas();
+  // });
+}
+
 $(document).ready(function () {
   const data = {
     user: sessionStorage.getItem("email"),
     room: sessionStorage.getItem("connectedRoom"),
   };
 
-  const roomsObj = JSON.parse(localStorage.getItem("rooms"));
+  addEventListeners();
+
+  // const roomsObj = JSON.parse(localStorage.getItem("rooms"));
+  getRooms();
+  const roomsObj = webStorage.getRooms();
 
   printUsers();
 
@@ -320,11 +361,14 @@ $(document).ready(function () {
 
   // eslint-disable-next-line no-undef
   socket = io.connect("http://localhost:8000", {
-    query: `data=${JSON.stringify(data)}`,
+    query: `data=${JSON.stringify({
+      user: data.user,
+      room: roomName,
+    })}`,
   });
 
   socket.on("connect", () => {
-    socket.emit("room", roomName);
+    socket.emit("room", { room: roomName, user: data.user });
   });
 
   socket.on("newUserConnected", async () => {
@@ -366,4 +410,35 @@ $(document).ready(function () {
       );
     }
   });
+
+  socket.on("disconnect", async (socket, message) => {
+    console.log(`Disconnect event received by the server`);
+
+    const url = new URL(`${baseURL}rooms`);
+    const result = await fetch(url);
+
+    if (result.status === 200) {
+      const rooms = await result.json();
+      localStorage.setItem("rooms", JSON.stringify(rooms));
+      cleanUsers();
+      printUsers();
+    }
+  });
 });
+
+export default {
+  addSelectedToBlocked,
+  setAdminVisibilityElems,
+  replaceRoomName,
+  getRoomName,
+  getRoomNameFromSessionStorage,
+  printBlockedUsers,
+  printUsers,
+  cleanUsers,
+  addCanvasMessageToScreen,
+  addMessageToScreen,
+  navigateToRooms,
+  submitMessage,
+  sendCanvasMessage,
+  sendMessage,
+};

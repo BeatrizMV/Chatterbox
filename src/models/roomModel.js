@@ -58,16 +58,13 @@ const addUserEmailForRoom = async (roomObj, email) => {
 
 const addNewRoom = async (nuRoom) => {
   const createdRoom = new Room(nuRoom);
-  let success = false;
-  await createdRoom.save((err, savedRoom) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Room saved");
-      success = true;
-    }
-  });
-  return success ? nuRoom : null;
+  let created;
+  try {
+    created = await createdRoom.save();
+  } catch (e) {
+    console.log(e);
+  }
+  return created ? nuRoom : null;
 };
 
 const updateRoom = async (room) => {

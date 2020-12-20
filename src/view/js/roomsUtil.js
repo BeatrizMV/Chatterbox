@@ -52,10 +52,12 @@ export const newRoom = async () => {
     });
 
     if (result.status === 201) {
-      const room = await result.json();
+      await result.json();
       // webStorage.saveRoom(name, roomCreator);
+      // reset the block so we get the current list of rooms and not accumulated
+      resetRoomBlock();
       await getRooms();
-      appendRoom(room);
+      // appendRoom(room);
     }
   } else {
     alert("Por favor, introduzca otro nombre de  sala");
@@ -80,6 +82,15 @@ const appendRoom = (data) => {
 
     node.appendChild(textNode);
     roomsContainer.appendChild(node);
+  }
+};
+
+const resetRoomBlock = () => {
+  const roomsContainer = document.getElementById("chat-list");
+  const childrenCol = roomsContainer.children;
+  // eslint-disable-next-line no-unmodified-loop-condition
+  while (roomsContainer && roomsContainer.children.length > 1) {
+    roomsContainer.removeChild(childrenCol[1]);
   }
 };
 

@@ -492,3 +492,11 @@ p {
   display: flex;
   justify-content: center;
 }
+
+.refresh-icon {
+  width: 25px;
+}
+
+#rooms-header {
+  display: flex;
+}

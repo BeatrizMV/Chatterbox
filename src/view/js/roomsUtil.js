@@ -85,7 +85,7 @@ const appendRoom = (data) => {
   }
 };
 
-const resetRoomBlock = () => {
+export const resetRoomBlock = () => {
   const roomsContainer = document.getElementById("chat-list");
   const childrenCol = roomsContainer.children;
   // eslint-disable-next-line no-unmodified-loop-condition

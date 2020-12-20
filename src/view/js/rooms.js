@@ -3,6 +3,7 @@ import {
   getUsers,
   newRoom,
   removeUserFromAllRooms,
+  resetRoomBlock,
 } from "./roomsUtil.js";
 import webstorage from "./webstorage.js";
 
@@ -23,6 +24,18 @@ $(document).ready(function () {
       console.log("Submit on 'crea-sala'");
       event.preventDefault();
       event.stopPropagation();
+      return false;
+    });
+  }
+
+  const refreshBtn = document.getElementById("rooms-refresh-btn");
+  if (refreshBtn) {
+    refreshBtn.addEventListener("click", function (event) {
+      console.log("Refreshing the list of rooms");
+      event.preventDefault();
+      event.stopPropagation();
+      resetRoomBlock();
+      getRooms();
       return false;
     });
   }

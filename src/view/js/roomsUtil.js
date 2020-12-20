@@ -47,12 +47,14 @@ export const newRoom = async () => {
       },
       body: JSON.stringify({
         name,
+        roomCreator,
       }),
     });
 
     if (result.status === 201) {
       const room = await result.json();
-      webStorage.saveRoom(name, roomCreator);
+      // webStorage.saveRoom(name, roomCreator);
+      await getRooms();
       appendRoom(room);
     }
   } else {

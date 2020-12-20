@@ -17,6 +17,7 @@ const rooms = new Schema({
   name: { type: String, unique: true },
   messages: [String],
   blockedUsers: [String],
+  roomCreator: String,
 });
 
 const Room = mongoose.model("Room", rooms);

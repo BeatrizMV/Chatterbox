@@ -6,14 +6,31 @@ import {
 } from "./roomsUtil.js";
 import webstorage from "./webstorage.js";
 
-$(document).ready(async function () {
+$(document).ready(function () {
+  const crearSalaBtn = document.getElementById("crea-sala");
+  if (crearSalaBtn) {
+    crearSalaBtn.addEventListener("click", function (event) {
+      console.log("Click on 'crea-sala'");
+      event.preventDefault();
+      event.stopPropagation();
+      newRoom();
+      return false;
+    });
+  }
+  const crearSalaForm = document.getElementById("crea-sala-form");
+  if (crearSalaForm) {
+    crearSalaForm.addEventListener("submit", function (event) {
+      console.log("Submit on 'crea-sala'");
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    });
+  }
+
   getRooms();
   getUsers();
   const userEmail = webstorage.getUser();
-  await removeUserFromAllRooms(userEmail);
-  document.getElementById("crea-sala").addEventListener("click", function () {
-    newRoom();
-  });
+  removeUserFromAllRooms(userEmail);
 });
 
 export default {};

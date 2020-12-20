@@ -26,6 +26,7 @@ const createRoom = async (req, res) => {
   const {
     // users,
     name,
+    roomCreator,
   } = req.body;
 
   // const userIDs = [];
@@ -45,6 +46,7 @@ const createRoom = async (req, res) => {
     users: [],
     name: name,
     blockedUsers: [],
+    roomCreator: roomCreator,
   });
 
   if (savedRoom) {

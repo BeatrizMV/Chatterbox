@@ -1,7 +1,8 @@
 # ChatterBox
 
 A Real Time Chat Application. 
-* Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions development with JavaScript and web services" of the DAW degree (Spain).
+
+_Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions development with JavaScript and web services" of the DAW degree (Spain)._
 
 ## Running the App 🎁
 
@@ -11,7 +12,9 @@ A Real Time Chat Application.
 * Open a third terminal and run ``` mongo ``` 
 
 * Open the first terminal  and run ``` npm start ```
-* And finally...
+
+_And finally..._
+
 * Open browser on http://localhost:3000/ as many times as chat users you want to have at the same time.
 
 ## Built in 🛠️
@@ -42,6 +45,10 @@ A Real Time Chat Application.
 ## Consultant 🔎
 
 * **Paco Gómez* - [pacogomezarnal](https://github.com/pacogomezarnal)
+
+## Contributing 📄
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License 📄
 

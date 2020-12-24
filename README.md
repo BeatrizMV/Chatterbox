@@ -1,7 +1,7 @@
 # ChatterBox
 
 A Real Time Chat Application. 
-Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions development with JavaScript and web services" of the DAW degree (Spain).
+* Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions development with JavaScript and web services" of the DAW degree (Spain).
 
 ## Running the App 🎅🎁
 
@@ -19,7 +19,7 @@ Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions 
 * [npm](https://www.npmjs.com/) - Package manager
 * [NodeJS](https://nodejs.org/en/) - Back-End
 * [expressJS](https://expressjs.com/es/) - Framework for Node.js
-* [JavaScript] Front-End
+* JavaScript Front-End
 * [Socket.io](https://socket.io/) - JavaScript library 
 * [Bootstrap 4](https://getbootstrap.com/) - Style
 * [MongoDb](https://www.mongodb.com/) - Database

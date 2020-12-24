@@ -5,14 +5,14 @@ Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions 
 
 ## Running the App 🎅🎁
 
-``` git clone ``` this repo
-Open the terminal on``` cd Chatterbox ``` and run ``` npm install ```
-Open a second terminal and run ``` mongod ```
-Open a third terminal and run ``` mongo ``` 
+* ``` git clone ``` this repo
+* Open the terminal on``` cd Chatterbox ``` and run ``` npm install ```
+* Open a second terminal and run ``` mongod ```
+* Open a third terminal and run ``` mongo ``` 
 
-Open the first terminal  and run ``` npm start ```
-And finally...
-Open browser on http://localhost:3000/ as many times as chat users you want to have at the same time.
+* Open the first terminal  and run ``` npm start ```
+* And finally...
+* Open browser on http://localhost:3000/ as many times as chat users you want to have at the same time.
 
 ## Built in 🛠️
 

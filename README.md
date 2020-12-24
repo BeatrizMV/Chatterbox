@@ -6,7 +6,7 @@ A Real Time Chat Application.
 ## Running the App 🎁
 
 * ``` git clone ``` this repo
-* Open the terminal on``` cd Chatterbox ``` and run ``` npm install ```
+* Open the terminal and run ``` cd Chatterbox ``` then run ``` npm install ```
 * Open a second terminal and run ``` mongod ```
 * Open a third terminal and run ``` mongo ``` 
 

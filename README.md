@@ -3,7 +3,7 @@
 A Real Time Chat Application. 
 * Project made by "TheTrueStack Team" for the "Project 9: Fullstack web solutions development with JavaScript and web services" of the DAW degree (Spain).
 
-## Running the App 🎅🎁
+## Running the App 🎁
 
 * ``` git clone ``` this repo
 * Open the terminal on``` cd Chatterbox ``` and run ``` npm install ```
@@ -49,7 +49,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Comments on this experience
 
-* We came from Java and had almost no experience with JS or NoSQL so this project was a truly a challenge.  📢
+* We came from Java and had almost no experience with JS or NoSQL so this project was truly a challenge.  📢
 * We want to thank Paco for all the support provided.
 * We also want to thank our ex-project partner Erik Pastor who contributed big part in this project.
 

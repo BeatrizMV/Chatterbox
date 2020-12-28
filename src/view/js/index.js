@@ -68,7 +68,7 @@ const register = async () => {
     }),
   });
 
-  if (result.status === 200) {
+  if (result.status === 201) {
     webStorage.registerUser(name, email);
     window.location.replace(`${baseURL}rooms.html`);
   } else {
